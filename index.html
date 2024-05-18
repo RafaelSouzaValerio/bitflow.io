@@ -87,8 +87,6 @@
                     <ul class="alert">
                         <li>
                             Um <span class="branch feat">Feat</span> pode ser mergeado e testado diretamente no <span class="branch release">Release</span> de acordo com a necessidade
-                            <br/>
-                            <a href="#">Veja um fluxograma dessa situação</a>
                         </li>
                     </ul>
                 </footer>
@@ -112,8 +110,6 @@
                     <ul class="alert">
                         <li>
                             Um <span class="branch fix">Fix</span> pode ser mergeado e testado diretamente no <span class="branch release">Release</span> de acordo com a necessidade
-                            <br/>
-                            <a href="#">Veja um fluxograma dessa situação</a>
                         </li>
                     </ul>
                 </footer>
@@ -167,7 +163,7 @@
                         <img src="img/conflict-pr-first-thumb.gif" />
                     </li>
                     <li>
-                        <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u></div>
+                        <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u>, o identificando como branch de conflito: <span class="branch conf">Conf</span></div>
                         <img src="img/conflict-new-branch-thumb.gif" />
                     </li>
                     <li>
@@ -185,7 +181,7 @@
                         <li>Essa situação tende a surgir ao criar o pull-request para <span class="branch staging">Staging</span>, porém <b>todo pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</li>
                         <li>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar o pull-request para que essa resolução funcione e não interfira no fluxo</li>
                         <li>Para validar sua resolução basta comparar <b>seu branch</b> original com o branch de destino, o conflito ainda deve existir, pois toda operação (merge e pull-request) foi realizado em um branch adicional</li>
-                        <li>Excluir todo branch de prefixo <u>"conf/"</u> após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></li>
+                        <li>Excluir todo branch <span class="branch conf">Conf</span> (prefixo <u>"conf/"</u>) após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></li>
                     </ul>
                 </footer>
             </section>

@@ -1,10 +1,11 @@
 :root {
-    --master: #3a4678;
-    --staging: #9dd651;
-    --feat: #65b3cd;
+    --master: #428bf0;
+    --staging: #7cba2c;
+    --feat: #6f4a82;
     --fix: #ff5143;
     --release: #ff7f27;
-    --release-fix: #fbd150;
+    --release-fix: #fabd05;
+    --conf: #e600e6;
 }
 
 *, *::before, *::after {
@@ -411,6 +412,10 @@ section footer {
 
     .branch.release-fix {
         color: var(--release-fix);
+    }
+
+    .branch.conf {
+        color: var(--conf);
     }
 
 .graph {    
