@@ -193,11 +193,6 @@ window.onload = function(){
   drawGraphRelease();
   drawGraphReleaseFix();
   drawGraphConf();
-
-  // let commits = document.querySelectorAll('use');
-  // for(let i = 0; i < commits.length; i++){
-  //   commits[i].removeEventListener('mouseover', commits[i].onmouseover, false);
-  // }
 }
 
 function drawGraphFeat() {

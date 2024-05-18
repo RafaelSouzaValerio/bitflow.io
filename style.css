@@ -457,10 +457,13 @@ section footer {
 }
 
 footer:not(section footer) {
-    height: 30px;
+    min-height: 30px;
     position: relative;
     width: 100%;
     background: #1a2140;
+    margin: auto;
+    align-content: center;
+    color: #fff;
 }
 
 /* Style the Image Used to Trigger the Modal */
