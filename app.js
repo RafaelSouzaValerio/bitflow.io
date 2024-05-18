@@ -3,22 +3,31 @@ const graphOptions = {
     mode: 'compact'
 };
 
+const commitWithoutDot = {
+  style: {
+    dot: {
+      size: 0
+    }
+  }
+}
+
 const branchMaster = {
     name: 'master',
     style: {
         color: 'var(--master)',
         label: {
-          strokeColor: "var(--master)"
+          strokeColor: 'var(--master)',
+          display: 'none'
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "var(--master)",
+        color: 'var(--master)',
         message: {
-          color: "var(--master)"
+          color: 'var(--master)'
         },
         dot: {
-          color: "var(--master)"
+          color: 'var(--master)'
         }
       }
     }
@@ -29,17 +38,18 @@ const branchStaging = {
     style: {
         color: 'var(--staging)',
         label: {
-          strokeColor: "var(--staging)"
+          strokeColor: 'var(--staging)',
+          display: 'none'
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "var(--staging)",
+        color: 'var(--staging)',
         message: {
-          color: "var(--staging)"
+          color: 'var(--staging)'
         },
         dot: {
-          color: "var(--staging)"
+          color: 'var(--staging)'
         }
       }
     }
@@ -50,17 +60,18 @@ const branchFeat = {
     style: {
         color: 'var(--feat)',
         label: {
-          strokeColor: "var(--feat)"
+          strokeColor: 'var(--feat)',
+          display: 'none'
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "var(--feat)",
+        color: 'var(--feat)',
         message: {
-          color: "var(--feat)"
+          color: 'var(--feat)'
         },
         dot: {
-          color: "var(--feat)"
+          color: 'var(--feat)'
         }
       }
     }
@@ -71,17 +82,18 @@ const branchFix = {
     style: {
         color: 'var(--fix)',
         label: {
-          strokeColor: "var(--fix)"
+          strokeColor: 'var(--fix)',
+          display: 'none'
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "var(--fix)",
+        color: 'var(--fix)',
         message: {
-          color: "var(--fix)"
+          color: 'var(--fix)'
         },
         dot: {
-          color: "var(--fix)"
+          color: 'var(--fix)'
         }
       }
     }
@@ -92,38 +104,62 @@ const branchRelease = {
     style: {
         color: 'var(--release)',
         label: {
-          strokeColor: "var(--release)"
+          strokeColor: 'var(--release)',
+          display: 'none'
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "var(--release)",
+        color: 'var(--release)',
         message: {
-          color: "var(--release)"
+          color: 'var(--release)'
         },
         dot: {
-          color: "var(--release)"
+          color: 'var(--release)'
         }
       }
     }
 };
 
 const branchReleaseFix = {
-    name: 'Release/Fix',
+    name: 'release/fix',
     style: {
         color: 'var(--release-fix)',
         label: {
-          strokeColor: "var(--release-fix)"
+          strokeColor: 'var(--release-fix)',
+          display: 'none'
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "var(--release-fix)",
+        color: 'var(--release-fix)',
         message: {
-          color: "var(--release-fix)"
+          color: 'var(--release-fix)'
         },
         dot: {
-          color: "var(--release-fix)"
+          color: 'var(--release-fix)'
+        }
+      }
+    }
+};
+
+const branchConf = {
+    name: 'conf',
+    style: {
+        color: 'var(--conf)',
+        label: {
+          strokeColor: 'var(--conf)',
+          display: 'none'
+        }
+    },
+    commitDefaultOptions: {
+      style: {
+        color: 'var(--conf)',
+        message: {
+          color: 'var(--conf)'
+        },
+        dot: {
+          color: 'var(--conf)'
         }
       }
     }
@@ -152,15 +188,16 @@ const branchReleaseFix = {
 }.call(this));
 
 window.onload = function(){
+  drawGraphFeat();
+  drawGraphFix();
+  drawGraphRelease();
+  drawGraphReleaseFix();
+  drawGraphConf();
 
-    drawGraphFeat();
-    drawGraphFix();
-    drawGraphRelease();
-    drawGraphReleaseFix();
-
-    // staging.commit("Prepare v1");
-
-    // master.merge(staging).tag("v1.0.0");
+  // let commits = document.querySelectorAll('use');
+  // for(let i = 0; i < commits.length; i++){
+  //   commits[i].removeEventListener('mouseover', commits[i].onmouseover, false);
+  // }
 }
 
 function drawGraphFeat() {
@@ -184,6 +221,7 @@ function drawGraphFeat() {
   let release = master.branch(branchRelease);
   release.merge(feat);
 
+  master.commit(commitWithoutDot);
   master.commit();
 }
 
@@ -208,6 +246,7 @@ function drawGraphFix() {
   let release = master.branch(branchRelease);
   release.merge(fix);
 
+  master.commit(commitWithoutDot);
   master.commit();
 }
 
@@ -223,12 +262,14 @@ function drawGraphRelease() {
   feat.commit();
 
   let fix = master.branch(branchFix);
+  fix.commit(commitWithoutDot);
   fix.commit();
 
-  let feat2Options = branchFeat;
-  feat2Options.name = "feat-2"
-  let feat2 = gitgraph.branch(feat2Options);
+  branchFeat.name = 'feat-2'
+  let feat2 = gitgraph.branch(branchFeat);
+  feat2.commit(commitWithoutDot);
   feat2.commit();
+  branchFeat.name = 'feat'
 
   let release = master.branch(branchRelease);
   release.merge(fix);
@@ -237,7 +278,6 @@ function drawGraphRelease() {
 
   let staging = gitgraph.branch(branchStaging);
   staging.merge(release);
-
   master.merge(release);
 }
 
@@ -253,4 +293,45 @@ function drawGraphReleaseFix() {
   releaseFix.commit();
 
   release.merge(releaseFix);
+}
+
+function drawGraphConf() {
+
+  let graphContainer = document.getElementById('graph-conf');  
+  let gitgraph = GitgraphJS.createGitgraph(graphContainer, graphOptions);
+
+  let feat = gitgraph.branch(branchFeat);
+  feat.commit();
+
+  let staging = feat.branch(branchStaging);
+  staging.commit(commitWithoutDot);
+  
+  let conf = feat.branch(branchConf);
+  conf.commit();
+
+  staging.merge(conf);
+}
+
+function openModalImg(sender) {
+
+  let modalImg = document.getElementById('modalImg');
+
+  if (!modalImg) return;
+
+  let modalImgElement = modalImg.querySelector('.modal-content');  
+  modalImg.style.display = 'flex';
+  modalImgElement.src = sender.src;
+
+  if (modalImg.onclick) return;
+  
+  modalImg.onclick = closeModalImg;
+}
+
+function closeModalImg() {
+
+  let modalImg = document.getElementById('modalImg');
+
+  if (!modalImg) return;
+
+  modalImg.style.display = 'none';
 }

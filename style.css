@@ -76,7 +76,7 @@ header .bg {
     height: 100vh;
     position: fixed;
     width: 100%;
-    background-image: url('https://cdn.dribbble.com/users/36400/screenshots/4037272/attachments/925202/git-monster-wallpaper-2560x1440.png');
+    background-image: url(img/bitflow-header.png);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -371,6 +371,7 @@ section ul.two-columns li div {
 section ul.two-columns li img {
     max-width: 50%;
     margin: auto;
+    cursor: pointer;
 }
 
 section footer {
@@ -394,32 +395,65 @@ section footer {
         color: var(--master);
     }
 
+        .branch.master:after {
+            content: "master";
+        }
+
     .branch.staging {
         color: var(--staging);
     }
+
+        .branch.staging:after {
+            content: "staging";
+        }
 
     .branch.feat {
         color: var(--feat);
     }
 
+        .branch.feat:after {
+            content: "feat";
+        }
+
     .branch.fix {
         color: var(--fix);
     }
+
+        .branch.fix:after {
+            content: "fix";
+        }
 
     .branch.release {
         color: var(--release);
     }
 
+        .branch.release:after {
+            content: "release";
+        }
+
     .branch.release-fix {
         color: var(--release-fix);
     }
+
+        .branch.release-fix:after {
+            content: "release/fix";
+        }
 
     .branch.conf {
         color: var(--conf);
     }
 
+        .branch.conf:after {
+            content: "conf";
+        }
+
 .graph {    
     margin-top: 2em;
+}
+
+.graph g text[fill="#333"],
+.graph g path[fill="#EEE"] {
+    display: none;
 }
 
 footer:not(section footer) {
@@ -428,3 +462,69 @@ footer:not(section footer) {
     width: 100%;
     background: #1a2140;
 }
+
+/* Style the Image Used to Trigger the Modal */
+#modalImg {
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+  
+  /* Modal Content (Image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+  
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
