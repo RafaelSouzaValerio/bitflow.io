@@ -1,3 +1,12 @@
+:root {
+    --master: #3a4678;
+    --staging: #9dd651;
+    --feat: #65b3cd;
+    --fix: #ff5143;
+    --release: #ff7f27;
+    --release-fix: #fbd150;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -7,13 +16,47 @@ html, body {
 }
 
 body {
-    font-family: 'Julius Sans One', sans-serif;
-    font-size: 12px;
-    background-color: #e6e6e6;
+    font-family: "Quicksand", "Josefin Sans", 'Julius Sans One', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1em;
+    background-color: #e6e6e6;
     text-align: center;
     padding: 0;
     margin: 0;
+}
+
+h1 {
+    font-family: "Orelega One";
+    font-size: 5em;
+    color: #fff;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 2px 1px #000;
+}
+
+h2 {
+    font-family:  "Quicksand", "Orelega One";
+    width: 60vw;
+    margin: 0 auto;
+    line-height: 1.5em;
+    padding: 10px 20px 0;
+    border-top: solid 1px rgba(255, 255, 255, .2);
+    letter-spacing: 0.015em;
+    display: block;
+    color: #eee;
+}
+
+h3 {
+    font-family: "Della Respira";
+    font-size: 1.7em;
+    font-weight: bolder;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+    margin-bottom: .2em;
 }
 
 header {
@@ -81,27 +124,6 @@ header .arrow {
 .centerV > div {
     display: table-cell;
     vertical-align: middle;
-}
-
-h1 {
-    font-size: 5em;
-    color: #fff;
-    font-weight: normal;
-    margin: 0;
-    font-family: 'Sansita One', cursive;
-    text-shadow: 0 2px 1px #000;
-    line-height: 1;
-}
-
-h2 {
-    width: 60vw;
-    margin: 0 auto;
-    line-height: 1.5em;
-    padding: 10px 20px 0;
-    border-top: solid 1px rgba(255, 255, 255, .2);
-    letter-spacing: 0.015em;
-    display: block;
-    color: #eee;
 }
 
 .bouncy {
@@ -297,11 +319,7 @@ section h1 {
 
 section h3 {
     font-size: 1.7em;
-    font-weight: normal;
-    margin: 0;
-    color: #caacef;
-    text-shadow: 0 2px 1px #000;
-    font-family: 'Sansita One', cursive;
+    color: #ae83e2;
     margin-bottom: .2em;
 }
 
@@ -316,8 +334,6 @@ section p {
 section ul {    
     list-style: none;
     margin-left: 0;
-    padding-left: 1.4em;
-    text-indent: -1.4em;
     text-shadow: none;
     text-align: start;
 }
@@ -331,45 +347,70 @@ section ul li {
     }
 
     section ul.alert li:before {
-        content: "\0021\a0";
+        content: "\002A\a0";
     }
+
+section ul.two-columns li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+section ul.two-columns li:before {
+    align-self: start;
+}
+
+section ul.two-columns li div {
+    display: inline;
+    width: 50%;
+    padding-right: 1em;
+    /* margin-left: 1.5em; */
+}
+
+section ul.two-columns li img {
+    max-width: 50%;
+    margin: auto;
+}
 
 section footer {
     display: inline-block;
 }
 
 .branch {
+    font-family:  "Josefin Sans";
     font-size: inherit;
     color: #fff;
-    font-weight: inherit;
+    font-weight: bold;
     margin: 0;
-    font-family: 'Sansita One', cursive;
-    text-shadow: 0 2px 1px #000;
+    text-shadow: 0 1px 0 #000;
     line-height: inherit;
+    background-color: #fff;
+    border-radius: 8%;
+    padding: 4px 6px;
 }
 
     .branch.master {
-        color: #3a4678;
+        color: var(--master);
     }
 
     .branch.staging {
-        color: #9dd651;
+        color: var(--staging);
     }
 
     .branch.feat {
-        color: #65b3cd;
+        color: var(--feat);
     }
 
     .branch.fix {
-        color: #ff5143;
+        color: var(--fix);
     }
 
     .branch.release {
-        color: #ff7f27;
+        color: var(--release);
     }
 
     .branch.release-fix {
-        color: #fbd150;
+        color: var(--release-fix);
     }
 
 .graph {    

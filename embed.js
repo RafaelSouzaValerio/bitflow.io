@@ -6,19 +6,19 @@ const graphOptions = {
 const branchMaster = {
     name: 'master',
     style: {
-        color: '#3a4678',
+        color: 'var(--master)',
         label: {
-          strokeColor: "#3a4678"
+          strokeColor: "var(--master)"
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "#3a4678",
+        color: "var(--master)",
         message: {
-          color: "#3a4678"
+          color: "var(--master)"
         },
         dot: {
-          color: "#3a4678"
+          color: "var(--master)"
         }
       }
     }
@@ -27,19 +27,19 @@ const branchMaster = {
 const branchStaging = {
     name: 'staging',
     style: {
-        color: '#9dd651',
+        color: 'var(--staging)',
         label: {
-          strokeColor: "#9dd651"
+          strokeColor: "var(--staging)"
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "#9dd651",
+        color: "var(--staging)",
         message: {
-          color: "#9dd651"
+          color: "var(--staging)"
         },
         dot: {
-          color: "#9dd651"
+          color: "var(--staging)"
         }
       }
     }
@@ -48,19 +48,19 @@ const branchStaging = {
 const branchFeat = {
     name: 'feat',
     style: {
-        color: '#8ac5d9',
+        color: 'var(--feat)',
         label: {
-          strokeColor: "#8ac5d9"
+          strokeColor: "var(--feat)"
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "#8ac5d9",
+        color: "var(--feat)",
         message: {
-          color: "#8ac5d9"
+          color: "var(--feat)"
         },
         dot: {
-          color: "#8ac5d9"
+          color: "var(--feat)"
         }
       }
     }
@@ -69,19 +69,19 @@ const branchFeat = {
 const branchFix = {
     name: 'fix',
     style: {
-        color: '#ff5143',
+        color: 'var(--fix)',
         label: {
-          strokeColor: "#ff5143"
+          strokeColor: "var(--fix)"
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "#ff5143",
+        color: "var(--fix)",
         message: {
-          color: "#ff5143"
+          color: "var(--fix)"
         },
         dot: {
-          color: "#ff5143"
+          color: "var(--fix)"
         }
       }
     }
@@ -90,19 +90,19 @@ const branchFix = {
 const branchRelease = {
     name: 'release',
     style: {
-        color: '#ff7f27',
+        color: 'var(--release)',
         label: {
-          strokeColor: "#ff7f27"
+          strokeColor: "var(--release)"
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "#ff7f27",
+        color: "var(--release)",
         message: {
-          color: "#ff7f27"
+          color: "var(--release)"
         },
         dot: {
-          color: "#ff7f27"
+          color: "var(--release)"
         }
       }
     }
@@ -111,19 +111,19 @@ const branchRelease = {
 const branchReleaseFix = {
     name: 'Release/Fix',
     style: {
-        color: '#fbd150',
+        color: 'var(--release-fix)',
         label: {
-          strokeColor: "#fbd150"
+          strokeColor: "var(--release-fix)"
         }
     },
     commitDefaultOptions: {
       style: {
-        color: "#fbd150",
+        color: "var(--release-fix)",
         message: {
-          color: "#fbd150"
+          color: "var(--release-fix)"
         },
         dot: {
-          color: "#fbd150"
+          color: "var(--release-fix)"
         }
       }
     }
