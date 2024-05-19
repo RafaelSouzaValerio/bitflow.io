@@ -4,21 +4,27 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="cheatsheet bit-flow: sistema de branches eficiente usando o bit-flow">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
         <link rel="manifest" href="site.webmanifest">
+
         <title>Cheatsheet do bit-flow</title>
+
         <link rel="stylesheet" href="style.css" type="text/css" media="screen,print">
-        <script type="text/javascript" async="" src="app.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@gitgraph/js"></script>
+        <script type="text/javascript" src="app.js" async></script>
+        
+        <!-- GitGraph -->
+        <script src="https://cdn.jsdelivr.net/npm/@gitgraph/js" defer></script>
+
         <!-- Page font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Della+Respira&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" media="none" onload="if(media!='all')media='all'">        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Della+Respira&display=swap" media="none" onload="if(media!='all')media='all'">        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" media="none" onload="if(media!='all')media='all'">        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" media="none" onload="if(media!='all')media='all'">
     </head>
     <body>
         <header>
@@ -48,34 +54,34 @@
                   <li><a href="#release">Release</a></li>
                   <li><a href="#release-fix">Release/Fix</a></li>
                   <li><a href="#conflict">Conflitos</a></li>
-                  <li><a href="#tips">Dicas</a></li>
+                  <li><a href="#tips" class="off">Dicas</a></li>
                 </ul>
             </nav>
         </menu>
         <main>
-            <section role="about" id="about">
-                <h1>Sobre</h1>
+            <section id="about">
+                <h2>Sobre</h2>
                 <p>
                     O bit-flow é um sistema (e quem sabe uma futura extensão) para o git que pretende, utilizando um único branch de desenvolvimento, 
                     otimizar o controle do fluxo de branches 
                     que utilizam um ambiente de testes e produção, identificados a partir daqui como <span class="branch staging"></span> e <span class="branch master"></span> respectivamente
                 </p>
             </section>
-            <section role="install" id="install" class="off">
+            <section id="install" class="off">
                 <h1>Instalação</h1>
                 <p>
                     Nada aqui ainda
                 </p>
             </section>
-            <section role="feat" id="feat">
-                <h1>Feat</h1>
+            <section id="feat">
+                <h2>Feat</h2>
                 <h3>Como implementar um feat?</h3>
                 <div class="col-left">
                     <ul>
-                        <li>O desenvolvimento de um feat começa sempre com base no branch <span class="branch master"></span></li>
-                        <li>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch <span class="branch staging"></span></li>
-                        <li>Em caso de rejeição ou ajustes as alterações devem ser realizadas no próprio branch e criar um novo pull-request</li>
-                        <li>Quando aprovado deve-se criar um pull-request para seu respectivo <span class="branch release"></span></li>
+                        <li><div>O desenvolvimento de um feat começa sempre com base no branch <span class="branch master"></span></div></li>
+                        <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch <span class="branch staging"></span></div></li>
+                        <li><div>Em caso de rejeição ou ajustes as alterações devem ser realizadas no próprio branch e criar um novo pull-request</div></li>
+                        <li><div>Quando aprovado deve-se criar um pull-request para seu respectivo <span class="branch release"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">                    
@@ -85,20 +91,20 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
                     <ul class="alert">
                         <li>
-                            Um <span class="branch feat"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> de acordo com a necessidade
+                            <div>Um <span class="branch feat"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> de acordo com a necessidade</div>
                         </li>
                     </ul>
                 </footer>
             </section>
-            <section role="fix" id="fix">
-                <h1>Fix</h1>                
+            <section id="fix">
+                <h2>Fix</h2>
                 <h3>Como desenvolver um fix?</h3>
                 <div class="col-left">
                     <ul>
-                        <li>O fix de uma ocorrência começa sempre com base no branch <span class="branch master"></span></li>
-                        <li>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch <span class="branch staging"></span></li>
-                        <li>Em caso de rejeição ou ajustes as alterações devem ser realizadas no próprio branch e criar um novo pull-request</li>
-                        <li>Quando aprovado deve-se criar um pull-request para seu respectivo <span class="branch release"></span></li>
+                        <li><div>O fix de uma ocorrência começa sempre com base no branch <span class="branch master"></span></div></li>
+                        <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch <span class="branch staging"></span></div></li>
+                        <li><div>Em caso de rejeição ou ajustes as alterações devem ser realizadas no próprio branch e criar um novo pull-request</div></li>
+                        <li><div>Quando aprovado deve-se criar um pull-request para seu respectivo <span class="branch release"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -108,21 +114,21 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
                     <ul class="alert">
                         <li>
-                            Um <span class="branch fix"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> de acordo com a necessidade
+                            <div>Um <span class="branch fix"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> de acordo com a necessidade</div>
                         </li>
                     </ul>
                 </footer>
             </section>
-            <section role="release" id="release">
-                <h1>Release</h1>
+            <section id="release">
+                <h2>Release</h2>
                 <h3>Como lançar um release?</h3>
                 <div class="col-left">
                     <ul>
-                        <li>Uma nova versão começa sempre com base no branch <span class="branch master"></span></li>
-                        <li>Mergear nesse branch todos os braches que deseja liberar nesse <span class="branch release"></span></li>
-                        <li>Excluir os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</li>
-                        <li>Caso necessite ajustes as alterações devem ser realizadas em um branch <span class="branch release-fix"></span> com base no branch <span class="branch release"></span> e criar um novo pull-request</li>
-                        <li>Após validar deve-se criar um pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></li>
+                        <li><div>Uma nova versão começa sempre com base no branch <span class="branch master"></span></div></li>
+                        <li><div>Mergear nesse branch todos os braches que deseja liberar nesse <span class="branch release"></span></div></li>
+                        <li><div>Excluir os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</div></li>
+                        <li><div>Caso necessite ajustes as alterações devem ser realizadas em um branch <span class="branch release-fix"></span> com base no branch <span class="branch release"></span> e criar um novo pull-request</div></li>
+                        <li><div>Após validar deve-se criar um pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -132,46 +138,46 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
                     <ul class="alert">
                         <li>
-                            Todo branch mergeado em <span class="branch release"></span> deve ser excluído após a operação, mantendo no repositório apenas branches ativos
+                            <div>Todo branch mergeado em <span class="branch release"></span> deve ser excluído após a operação, mantendo no repositório apenas branches ativos</div>
                         </li>
                         <li>
-                            O branch <span class="branch release"></span> pode ser utilizado para compilação e lançamento de versão, porém sempre ao ser concluído deve ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></span>
+                            <div>O branch <span class="branch release"></span> pode ser utilizado para compilação e lançamento de versão, porém sempre ao ser concluído deve ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></span></div>
                         </li>
                     </ul>
                 </footer>
             </section>
-            <section role="release-fix" id="release-fix">
-                <h1>Release/Fix</h1>
+            <section id="release-fix">
+                <h2>Release/Fix</h2>
                 <h3>Como corrigir um release?</h3>
                 <div class="col-left">
                     <ul>
-                        <li>O fix de uma versão começa sempre com base no branch do respectivo <span class="branch release"></span></li>
-                        <li>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch do respectivo <span class="branch release"></span></li>
+                        <li><div>O fix de uma versão começa sempre com base no branch do respectivo <span class="branch release"></span></div></li>
+                        <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch do respectivo <span class="branch release"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">
                     <div id="graph-release-fix" class="graph"></div>
                 </div>
             </section>
-            <section role="conflict" id="conflict">
-                <h1>Conflitos</h1>
+            <section id="conflict">
+                <h2>Conflitos</h2>
                 <h3>Como solucionar conflitos?</h3>
                 <ul class="two-columns">
                     <li>
                         <div>A resolução de conflitos inicia ao tentar criar o pull-request de <b>seu branch</b>, e no comparativo é exibida a mensagem que não poderá ser mergeado automaticamente</div>
-                        <img src="img/conflict-pr-first-thumb.gif" onclick="openModalImg(this)" />
+                        <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                     <li>
                         <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u>, o identificando como branch de conflito: <span class="branch conf"></span></div>
-                        <img src="img/conflict-new-branch-thumb.gif" onclick="openModalImg(this)" />
+                        <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                     <li>
                         <div>Já no novo branch iremos mergear a branch de destino e resolver os conflitos que surgirem</div>
-                        <img src="img/conflict-merge-thumb.gif" onclick="openModalImg(this)" />
+                        <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                     <li>
                         <div>Após concluir os conflitos no novo branch, criar o pull-request do novo branch para o branch de destino, nesse momento não devem existir conflitos</div>
-                        <img src="img/conflict-pr-seccond-thumb.gif" onclick="openModalImg(this)" />
+                        <img src="img/conflict-pr-seccond-thumb.webp" alt="Pull request sem conflito" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                 </ul>
                 <div>
@@ -180,20 +186,20 @@
                 <footer>
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
                     <ul class="alert">
-                        <li>Essa situação tende a surgir ao criar o pull-request para <span class="branch staging"></span>, porém <b>todo pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</li>
-                        <li>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar o pull-request para que essa resolução funcione e não interfira no fluxo</li>
-                        <li>Para validar sua resolução basta comparar <b>seu branch</b> original com o branch de destino, o conflito ainda deve existir, pois toda operação (merge e pull-request) foi realizado em um branch adicional</li>
-                        <li>Excluir todo branch <span class="branch conf"></span> (prefixo <u>"conf/"</u>) após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></li>
+                        <li><div>Essa situação tende a surgir ao criar o pull-request para <span class="branch staging"></span>, porém <b>todo pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</div></li>
+                        <li><div>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar o pull-request para que essa resolução funcione e não interfira no fluxo</div></li>
+                        <li><div>Para validar sua resolução basta comparar <b>seu branch</b> original com o branch de destino, o conflito ainda deve existir, pois toda operação (merge e pull-request) foi realizado em um branch adicional</div></li>
+                        <li><div>Excluir todo branch <span class="branch conf"></span> (prefixo <u>"conf/"</u>) após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></div></li>
                     </ul>
                 </footer>
             </section>
-            <section role="tips" id="tips" class="off">
+            <section id="tips" class="off">
                 <h1>Dicas</h1>
                 <p>
                     Nada aqui ainda
                 </p>
             </section>
-            <section role="downloads" id="downloads" class="off">
+            <section id="downloads" class="off">
                 <h1>Downloads</h1>
                 <p>
                     Nenhum download disponível
@@ -206,6 +212,6 @@
         </footer>
     </body>    
     <div id="modalImg" class="modal">
-        <img class="modal-content">
+        <img class="modal-content" alt="modal image">
     </div>
 </html>

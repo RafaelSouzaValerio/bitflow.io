@@ -211,7 +211,7 @@ function drawGraphFeat() {
   let feat = master.branch(branchFeat);
   feat.commit();
 
-  let staging = gitgraph.branch(branchStaging);
+  let staging = master.branch(branchStaging);
   staging.merge(feat);
 
   feat.commit();
@@ -321,6 +321,7 @@ function openModalImg(sender) {
   let modalImgElement = modalImg.querySelector('.modal-content');  
   modalImg.style.display = 'flex';
   modalImgElement.src = sender.src;
+  modalImgElement.alt = sender.alt;
 
   if (modalImg.onclick) return;
   
