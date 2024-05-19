@@ -62,6 +62,7 @@ h3 {
 
 header {
     height: 100vh;
+    width: 100vw;
     position: relative;
     z-index: -1;
     top: 0;
@@ -74,8 +75,8 @@ header {
 
 header .bg {
     height: 100vh;
+    width: 100vw;
     position: fixed;
-    width: 100%;
     background-image: url(img/bitflow-header.png);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -106,7 +107,7 @@ header .title .text {
     padding: 4em;
     background: rgba(0, 0, 0, .6);
 }
-
+  
 header .arrow {
     position: fixed;
     left: 50%;
@@ -525,9 +526,106 @@ footer:not(section footer) {
     cursor: pointer;
   }
   
-  /* 100% Image Width on Smaller Screens */
-  @media only screen and (max-width: 700px){
-    .modal-content {
-      width: 100%;
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+        
+    body {
+        font-size: .8em;
     }
-  }
+
+    header .title .text {
+        padding: unset;
+    }
+
+    h1 {
+        font-size: 3.8em;
+    }
+    
+    h2 {
+        font-size: 2em;
+        letter-spacing: 0.01em;
+        width: 100vw;
+        margin: 0 auto;    
+    }
+    
+    h3 {
+        font-size: 1em;
+        margin-bottom: .1em;
+    }
+        
+    menu {
+        padding-left: 1em;
+    }
+
+    nav {
+        padding-right: 0;
+        padding-left: 0;
+        padding-top: 10px;
+    }
+
+    nav ul {
+        margin-bottom: 0px;
+        padding-left: 1em;
+    }
+
+    nav li {            
+        padding: .2em 0;
+        display: inline-block;
+    }
+
+    main {
+        padding: .1em .2em;
+    }
+
+    main .col-left,
+    main .col-right {
+        width: 85vw;
+        display: inline-block;
+        margin: 0;
+        float: none;
+    }
+
+    section {
+        padding-top: 1em;
+        margin: 0;
+        width: 100vw;
+    }
+
+    section h3 {
+        font-size: 1.4em;
+        margin-bottom: .1em;
+    }
+
+    .graph {
+        margin-top: .5em;
+        padding-bottom: .5em !important;
+    }
+
+    section ul.two-columns {
+        width: 95vw;
+    }
+
+    section ul.two-columns li {
+        display: inline-block;
+    }
+
+    section ul.two-columns li div,
+    section ul.two-columns li img {
+        display: contents;
+        width: 100%;
+    }
+
+    section ul.two-columns li img {
+        width: 100%;
+        display: block;
+        margin-top: 1em;
+    }
+
+    section ul.alert {
+        width: 95vw;
+    }
+
+    .modal-content {
+        width: 100%;
+    }
+}
