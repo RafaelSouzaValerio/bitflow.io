@@ -599,7 +599,7 @@ footer:not(section footer) {
     .graph {
         margin-top: .5em;
         padding-bottom: .5em !important;
-        width: 95vw !important;
+        width: 85vw !important;
     }
 
     section ul.two-columns {
