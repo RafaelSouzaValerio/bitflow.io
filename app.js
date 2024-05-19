@@ -189,6 +189,10 @@ const branchConf = {
 };
 
 window.onload = function(){
+
+  let matchMedia = window.matchMedia("(max-width: 700px)");
+  graphOptions.responsive = matchMedia.matches;
+
   drawGraphFeat();
   drawGraphFix();
   drawGraphRelease();
