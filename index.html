@@ -25,10 +25,15 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Della+Respira&display=swap" media="none" onload="if(media!='all')media='all'">        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" media="none" onload="if(media!='all')media='all'">        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" media="none" onload="if(media!='all')media='all'">
+
+        <!-- html3Pdf + pdf-lib -->
+        <script src="html3pdf.bundle.js" defer></script>
+        <script src="pdf-lib.min.js"></script>
     </head>
     <body>
         <header>
             <div class="bg">  
+                <img src="img/bitflow-header.webp" alt="Cover" width="100%" height="100%" style="display: none;" />
                 <div class="arrow bouncy">  
                     <svg height="25" width="50">
                         <polygon points="0,0 25,10 50,0 25,25" fill="rgba(255,255,255,.5)" stroke-width="0" stroke="rgba(255,255,255,.3)"/>
@@ -45,7 +50,9 @@
             </div> 
             <div class="shade"></div>
         </header>
+        <input type="checkbox" id="mobile-toggle" />
         <menu>
+            <label class="mobile-button" for="mobile-toggle"><span class="mobile-icon"></span></label>
             <nav role="navigation" class="col-md-12 text-right">
                 <ul class="anchors">
                   <li><a href="#about">Início</a></li>
@@ -55,53 +62,58 @@
                   <li><a href="#release-fix">Release/Fix</a></li>
                   <li><a href="#conflict">Conflitos</a></li>
                   <li><a href="#tips" class="off">Dicas</a></li>
+                  <li><a href="#download">Download</a></li>
                 </ul>
             </nav>
         </menu>
         <main>
+            <i class="overlay" onclick="closeMenu()"></i>
             <section id="about">
                 <h2>Sobre</h2>
                 <p>
-                    O bit-flow é um sistema (e quem sabe uma futura extensão) para o git que pretende, utilizando um único branch de desenvolvimento, 
-                    otimizar o controle do fluxo de branches 
-                    que utilizam um ambiente de testes e produção, identificados a partir daqui como <span class="branch staging"></span> e <span class="branch master"></span> respectivamente
+                    O bit-flow é um fluxo para o git, que utiliza um único branch de desenvolvimento para otimizar o controle de branches em uma organização
+                    que utiliza ambientes de testes e produção, identificados a partir daqui como <span class="branch staging"></span> e <span class="branch master"></span> respectivamente
                 </p>
             </section>
             <section id="install" class="off">
-                <h1>Instalação</h1>
+                <h2>Instalação</h2>
                 <p>
                     Nada aqui ainda
                 </p>
             </section>
             <section id="feat">
                 <h2>Feat</h2>
+                <div class="question">O que é um feat?</div>
+                <div class="answer"><span class="branch feat"></span> é um branch destinado a implementação de um recurso</div>
                 <h3>Como implementar um feat?</h3>
                 <div class="col-left">
                     <ul>
-                        <li><div>O desenvolvimento de um feat começa sempre com base no branch <span class="branch master"></span></div></li>
+                        <li><div>O desenvolvimento de um <span class="branch feat"></span> começa sempre com base no branch <span class="branch master"></span></div></li>
                         <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch <span class="branch staging"></span></div></li>
                         <li><div>Em caso de rejeição ou ajustes as alterações devem ser realizadas no próprio branch e criar um novo pull-request</div></li>
                         <li><div>Quando aprovado deve-se criar um pull-request para seu respectivo <span class="branch release"></span></div></li>
                     </ul>
                 </div>
-                <div class="col-right">                    
+                <div class="col-right">
                     <div id="graph-feat" class="graph"></div>
                 </div>
                 <footer>
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
                     <ul class="alert">
                         <li>
-                            <div>Um <span class="branch feat"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> de acordo com a necessidade</div>
+                            <div>Um <span class="branch feat"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> caso necessite ser liberado naquela versão</div>
                         </li>
                     </ul>
                 </footer>
             </section>
             <section id="fix">
                 <h2>Fix</h2>
+                <div class="question">O que é um fix?</div>
+                <div class="answer"><span class="branch fix"></span> é um branch destinado a correções e ajustes</div>
                 <h3>Como desenvolver um fix?</h3>
                 <div class="col-left">
                     <ul>
-                        <li><div>O fix de uma ocorrência começa sempre com base no branch <span class="branch master"></span></div></li>
+                        <li><div>O <span class="branch fix"></span> de uma ocorrência começa sempre com base no branch <span class="branch master"></span></div></li>
                         <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch <span class="branch staging"></span></div></li>
                         <li><div>Em caso de rejeição ou ajustes as alterações devem ser realizadas no próprio branch e criar um novo pull-request</div></li>
                         <li><div>Quando aprovado deve-se criar um pull-request para seu respectivo <span class="branch release"></span></div></li>
@@ -114,13 +126,15 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
                     <ul class="alert">
                         <li>
-                            <div>Um <span class="branch fix"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> de acordo com a necessidade</div>
+                            <div>Um <span class="branch fix"></span> pode ser mergeado e testado diretamente no <span class="branch release"></span> caso necessite ser liberado naquela versão</div>
                         </li>
                     </ul>
                 </footer>
             </section>
             <section id="release">
                 <h2>Release</h2>
+                <div class="question">O que é um release?</div>
+                <div class="answer"><span class="branch release"></span> é um branch onde é preparada uma nova versão da aplicação</div>
                 <h3>Como lançar um release?</h3>
                 <div class="col-left">
                     <ul>
@@ -141,17 +155,25 @@
                             <div>Todo branch mergeado em <span class="branch release"></span> deve ser excluído após a operação, mantendo no repositório apenas branches ativos</div>
                         </li>
                         <li>
-                            <div>O branch <span class="branch release"></span> pode ser utilizado para compilação e lançamento de versão, porém sempre ao ser concluído deve ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></span></div>
+                            <div>Para validação do <span class="branch release"></span> é necessário que exista o ambiente disponível dessa versão</div>
+                        </li>
+                        <li>
+                            <div>O branch <span class="branch release"></span> pode ser utilizado para compilação e lançamento de versão</div>
+                        </li>
+                        <li>
+                            <div>Sempre ao ser liberado, o branch <span class="branch release"></span> deve ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></span></div>
                         </li>
                     </ul>
                 </footer>
             </section>
             <section id="release-fix">
                 <h2>Release/Fix</h2>
+                <div class="question">O que é um release/fix?</div>
+                <div class="answer"><span class="branch release-fix"></span> é um branch exclusivo para correções e ajustes de um <span class="branch release"></span></div>
                 <h3>Como corrigir um release?</h3>
                 <div class="col-left">
                     <ul>
-                        <li><div>O fix de uma versão começa sempre com base no branch do respectivo <span class="branch release"></span></div></li>
+                        <li><div>O <span class="branch release-fix"></span> de uma versão começa sempre com base no branch do respectivo <span class="branch release"></span></div></li>
                         <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch do respectivo <span class="branch release"></span></div></li>
                     </ul>
                 </div>
@@ -161,6 +183,8 @@
             </section>
             <section id="conflict">
                 <h2>Conflitos</h2>
+                <div class="question">O que são conflitos?</div>
+                <div class="answer">Existência de alterações no mesmo bloco de código de um arquivo</div>
                 <h3>Como solucionar conflitos?</h3>
                 <ul class="two-columns">
                     <li>
@@ -168,7 +192,7 @@
                         <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                     <li>
-                        <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u>, o identificando como branch de conflito: <span class="branch conf"></span></div>
+                        <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
                         <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                     <li>
@@ -176,7 +200,7 @@
                         <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                     <li>
-                        <div>Após concluir os conflitos no novo branch, criar o pull-request do novo branch para o branch de destino, nesse momento não devem existir conflitos</div>
+                        <div>Após resolver os conflitos no novo branch, crie o pull-request do novo branch para o branch de destino, nesse momento não devem existir conflitos</div>
                         <img src="img/conflict-pr-seccond-thumb.webp" alt="Pull request sem conflito" onclick="openModalImg(this)" width="100%" height="100%" />
                     </li>
                 </ul>
@@ -194,19 +218,45 @@
                 </footer>
             </section>
             <section id="tips" class="off">
-                <h1>Dicas</h1>
+                <h2>Dicas</h2>
                 <p>
                     Nada aqui ainda
                 </p>
             </section>
-            <section id="downloads" class="off">
-                <h1>Downloads</h1>
-                <p>
-                    Nenhum download disponível
-                </p>
+            <section id="download" class="no-print">
+                <h2>Download</h2>
+                <ul class="two-columns no-list-style">
+                    <li style="align-items: center;">
+                        Gostou? faça o download desse fluxo e mantenha perto de você 
+                        <button onclick="downloadHtml()">                            
+                            <span>Download</span>
+                            <span>PDF</span>
+                            <div id="load-pdf" class="loader-mini" title="carregando arquivo">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="0" width="4" height="20" fill="#333">
+                                    <animate attributeName="opacity" attributeType="XML"
+                                    values="1; .2; 1" 
+                                    begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="7" y="0" width="4" height="20" fill="#333">
+                                    <animate attributeName="opacity" attributeType="XML"
+                                    values="1; .2; 1" 
+                                    begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="14" y="0" width="4" height="20" fill="#333">
+                                    <animate attributeName="opacity" attributeType="XML"
+                                    values="1; .2; 1" 
+                                    begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                </svg>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
             </section>
         </main>
-        <footer>
+        <footer class="endpage">
             <p>Fluxo utilizado pela equipe de desenvolvimento de Ahreas-Folha</p>
             <p>Envie sua sugestão para rafael.souza@superlogica.com </p>
         </footer>

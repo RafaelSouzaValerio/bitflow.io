@@ -1,21 +1,22 @@
 (function () {
   window.addEventListener('scroll', function() {
       let shadeOpacity = this.window.scrollY / 500;
-      let bgScale = (this.window.scrollY * .0004) + 1; // higher number for more zoom
-      let textMarginTop = (this.window.scrollY * .2) + 1; // Title speed
+      let bgScale = (this.window.scrollY * .0004) + 1;
+      let textMarginTop = (this.window.scrollY * .2) + 1;
 
       this.document.querySelector('.shade').style.opacity = shadeOpacity;
       this.document.querySelector('.bg').style.transform = `scale(${bgScale})`;
       this.document.querySelector('.text').style.marginTop = textMarginTop;
-      
+
       let header = this.document.querySelector('header');
       let menu = this.document.querySelector('menu');
       if (window.scrollY >= (header.clientHeight - (header.clientHeight*5/100))) {
-          menu.classList.remove('fadeOutUp');
-          menu.classList.add('fadeInDown');
+        menu.classList.remove('fadeOutUp');
+        menu.classList.add('fadeInDown');
       } else {
-          menu.classList.remove('fadeInDown');
-          menu.classList.add('fadeOutUp');
+        menu.classList.remove('fadeInDown');
+        menu.classList.add('fadeOutUp');          
+        closeMenu();
       }
   });
 }.call(this));
@@ -188,6 +189,13 @@ const branchConf = {
     }
 };
 
+function closeMenu() {
+  let menuCheck = document.getElementById('mobile-toggle');
+  if (menuCheck) {
+    menuCheck.checked = false;
+  }
+}
+
 window.onload = function(){
 
   let matchMedia = window.matchMedia("(max-width: 700px)");
@@ -198,6 +206,104 @@ window.onload = function(){
   drawGraphRelease();
   drawGraphReleaseFix();
   drawGraphConf();
+
+  setTimeout(e => {
+    generateHtmlFile();
+  }, 500);
+}
+
+const htmlFile = { 
+  name: 'bit-flow.pdf',
+  pdf: null,
+  running: false
+};
+
+async function generateHtmlFile(callDownload) {
+
+  if (htmlFile.pdf) return;
+  if (htmlFile.running) return;
+
+  htmlFile.running = true;
+
+  let cover;
+  let header = document.querySelector('header');
+  html3pdf()
+    .set({
+      margin: [0,0,0,0],
+      jsPDF:{ orientation: 'portrait', unit: 'px', format: [window.innerWidth, window.innerHeight] }
+    })
+    .from(header)
+    .toPdf()
+    .get('pdf').then(async pdf => {      
+      if (pdf) {
+        //window.open(pdf.output('bloburl'), '_blank');
+        cover = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer());
+      }
+    });
+    
+  let printNode = document.createElement('main');
+  let sections = document.querySelectorAll('main section:not(.off):not(.no-print)');
+  sections.forEach(e => {
+    let node = e.cloneNode(true);
+    printNode.appendChild(node);
+  });
+  
+  let html = document.documentElement, body = document.body;
+  let pdfWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+
+  let main = document.querySelector('main');
+  let footerHeight = document.querySelector('footer.endpage').offsetHeight,
+      mainHeight = getComputedStyle(main),
+      padding = parseInt(mainHeight.paddingTop) + parseInt(mainHeight.paddingBottom);
+
+  mainHeight = main.clientHeight - padding;
+
+  html3pdf()
+    .set({
+      margin: [0,0,0,0],
+      jsPDF:{ orientation: 'portrait', unit: 'px', format: [pdfWidth, mainHeight - footerHeight] }
+    })
+    .from(printNode)
+    .toPdf()
+    .get('pdf').then(async pdf => {
+      if (pdf) {
+        //window.open(pdf.output('bloburl'), '_blank');
+        let doc = PDFLib.PDFDocument;
+        let main = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer())
+        let pdfCover = await doc.load(cover);
+        let pdfMain = await doc.load(main);
+        
+        let merged = await doc.create(); 
+        let copiedPagesCover = await merged.copyPages(pdfCover, pdfCover.getPageIndices());
+        copiedPagesCover.forEach((page) => merged.addPage(page)); 
+        let copiedPagesMain = await merged.copyPages(pdfMain, pdfMain.getPageIndices());
+        copiedPagesMain.forEach((page) => merged.addPage(page)); 
+        htmlFile.pdf = await merged.save();        
+        htmlFile.running = false;
+
+        let load = document.getElementById('load-pdf');
+        if (load) {
+          load.parentElement.removeChild(load);
+        }
+
+        if (callDownload) downloadHtml();
+      }
+    });
+}
+
+function downloadHtml() {
+
+  generateHtmlFile(true);
+
+  if (htmlFile.pdf) {
+    const blob = new Blob([htmlFile.pdf]);
+    const url = window.URL.createObjectURL(blob);
+    let link = document.createElement("a");
+    link.href = url;
+    link.download = htmlFile.name;
+    link.click();    
+    return;
+  }
 }
 
 function drawGraphFeat() {
