@@ -11,11 +11,13 @@
       let header = this.document.querySelector('header');
       let menu = this.document.querySelector('menu');
       if (window.scrollY >= (header.clientHeight - (header.clientHeight*5/100))) {
+        header.style["display"] = "block";
         menu.classList.remove('fadeOutUp');
         menu.classList.add('fadeInDown');
       } else {
+        header.style["display"] = "none";
         menu.classList.remove('fadeInDown');
-        menu.classList.add('fadeOutUp');          
+        menu.classList.add('fadeOutUp');       
         closeMenu();
       }
   });
