@@ -627,7 +627,7 @@ section#download button:hover span:last-child {
     text-align: center;
     padding: 1em;
     margin: 0 auto 1em;
-    display: inline-block;
+    display: inline-block !important;
     vertical-align: top;
 }
 
@@ -636,21 +636,25 @@ section#download button:hover span:last-child {
         fill: #5B27A5;
     }
 
-    button .loader-mini {
-        border-radius: inherit;
-        position: absolute;
-        z-index: 10;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        height: 100%;
-        width: 100% !important;
-        background: rgba(18, 18, 18, 0.2);
-        -webkit-backdrop-filter: blur(3px);
-        backdrop-filter: blur(3px);
-        margin: 0;
-        padding: 10%;
-    }
+button .loader-mini {
+    border-radius: inherit;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100% !important;
+    background: rgba(18, 18, 18, 0.2);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    margin: 0;
+    padding: 10%;
+}
+
+button .loader-mini ~ span {
+    display: none !important;
+}
 
 #mobile-toggle {
     display: none;

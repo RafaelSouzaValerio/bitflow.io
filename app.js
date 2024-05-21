@@ -11,11 +11,9 @@
       let header = this.document.querySelector('header');
       let menu = this.document.querySelector('menu');
       if (window.scrollY >= (header.clientHeight - (header.clientHeight*5/100))) {
-        header.style["display"] = "block";
         menu.classList.remove('fadeOutUp');
         menu.classList.add('fadeInDown');
       } else {
-        header.style["display"] = "none";
         menu.classList.remove('fadeInDown');
         menu.classList.add('fadeOutUp');       
         closeMenu();
@@ -200,7 +198,7 @@ function closeMenu() {
 
 window.onload = function(){
 
-  let matchMedia = window.matchMedia("(max-width: 700px)");
+  let matchMedia = window.matchMedia('(max-width: 700px)');
   graphOptions.responsive = matchMedia.matches;
 
   drawGraphFeat();
@@ -209,9 +207,7 @@ window.onload = function(){
   drawGraphReleaseFix();
   drawGraphConf();
 
-  setTimeout(e => {
-    generateHtmlFile();
-  }, 500);
+  generateHtmlFile();
 }
 
 const htmlFile = { 
@@ -220,91 +216,98 @@ const htmlFile = {
   running: false
 };
 
-async function generateHtmlFile(callDownload) {
+async function generateHtmlFile() {
 
   if (htmlFile.pdf) return;
   if (htmlFile.running) return;
 
   htmlFile.running = true;
 
-  let cover;
-  let header = document.querySelector('header');
-  html3pdf()
-    .set({
-      margin: [0,0,0,0],
-      jsPDF:{ orientation: 'portrait', unit: 'px', format: [window.innerWidth, window.innerHeight] }
-    })
-    .from(header)
-    .toPdf()
-    .get('pdf').then(async pdf => {      
-      if (pdf) {
-        //window.open(pdf.output('bloburl'), '_blank');
-        cover = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer());
-      }
+  setTimeout(async function() {
+    let cover;
+    let header = document.querySelector('header');
+    await html3pdf()
+            .set({
+              margin: [0,0,0,0],
+              jsPDF:{ orientation: 'portrait', unit: 'px', format: [window.innerWidth, window.innerHeight] }
+            })
+            .from(header)
+            .toPdf()
+            .get('pdf').then(async pdf => {      
+              if (pdf) {
+                //window.open(pdf.output('bloburl'), '_blank');
+                cover = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer());
+              }
+            });
+      
+    let printNode = document.createElement('main');
+    let sections = document.querySelectorAll('main section:not(.off):not(.no-print)');
+    sections.forEach(e => {
+      let node = e.cloneNode(true);
+      printNode.appendChild(node);
     });
     
-  let printNode = document.createElement('main');
-  let sections = document.querySelectorAll('main section:not(.off):not(.no-print)');
-  sections.forEach(e => {
-    let node = e.cloneNode(true);
-    printNode.appendChild(node);
-  });
-  
-  let html = document.documentElement, body = document.body;
-  let pdfWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+    let html = document.documentElement, body = document.body;
+    let pdfWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
 
-  let main = document.querySelector('main');
-  let footerHeight = document.querySelector('footer.endpage').offsetHeight,
-      mainHeight = getComputedStyle(main),
-      padding = parseInt(mainHeight.paddingTop) + parseInt(mainHeight.paddingBottom);
+    let main = document.querySelector('main');
+    let footerHeight = document.querySelector('footer.endpage').offsetHeight,
+        mainHeight = getComputedStyle(main),
+        padding = parseInt(mainHeight.paddingTop) + parseInt(mainHeight.paddingBottom);
 
-  mainHeight = main.clientHeight - padding;
+    mainHeight = main.clientHeight - padding;
+    if (graphOptions.responsive) {
+      footerHeight += footerHeight*2;
+    }
 
-  html3pdf()
-    .set({
-      margin: [0,0,0,0],
-      jsPDF:{ orientation: 'portrait', unit: 'px', format: [pdfWidth, mainHeight - footerHeight] }
-    })
-    .from(printNode)
-    .toPdf()
-    .get('pdf').then(async pdf => {
-      if (pdf) {
-        //window.open(pdf.output('bloburl'), '_blank');
-        let doc = PDFLib.PDFDocument;
-        let main = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer())
-        let pdfCover = await doc.load(cover);
-        let pdfMain = await doc.load(main);
-        
-        let merged = await doc.create(); 
-        let copiedPagesCover = await merged.copyPages(pdfCover, pdfCover.getPageIndices());
-        copiedPagesCover.forEach((page) => merged.addPage(page)); 
-        let copiedPagesMain = await merged.copyPages(pdfMain, pdfMain.getPageIndices());
-        copiedPagesMain.forEach((page) => merged.addPage(page)); 
-        htmlFile.pdf = await merged.save();        
-        htmlFile.running = false;
+    html3pdf()
+      .set({
+        margin: [0,0,0,0],
+        jsPDF:{ orientation: 'portrait', unit: 'px', format: [pdfWidth, mainHeight - footerHeight] }
+      })
+      .from(printNode)
+      .toPdf()
+      .get('pdf').then(async pdf => {
+        if (pdf) {
+          //window.open(pdf.output('bloburl'), '_blank');
+          let doc = PDFLib.PDFDocument;
+          let main = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer())
+          let pdfCover = await doc.load(cover);
+          let pdfMain = await doc.load(main);
+          
+          let merged = await doc.create(); 
+          let copiedPagesCover = await merged.copyPages(pdfCover, pdfCover.getPageIndices());
+          copiedPagesCover.forEach((page) => merged.addPage(page)); 
+          let copiedPagesMain = await merged.copyPages(pdfMain, pdfMain.getPageIndices());
+          copiedPagesMain.forEach((page) => merged.addPage(page)); 
+          htmlFile.pdf = await merged.save();        
+          htmlFile.running = false;
 
-        let load = document.getElementById('load-pdf');
-        if (load) {
-          load.parentElement.removeChild(load);
+          let load = document.getElementById('load-pdf');
+          if (load) {
+            load.parentElement.removeChild(load);
+          }
         }
-
-        if (callDownload) downloadHtml();
-      }
-    });
+      });
+  }, 500);  
 }
 
 function downloadHtml() {
 
-  generateHtmlFile(true);
+  let link = document.getElementById('download-pdf');
+  if (!link) return;
+
+  if (!link.href.includes('#')) {
+    link.click();
+    return;
+  }
 
   if (htmlFile.pdf) {
     const blob = new Blob([htmlFile.pdf]);
-    const url = window.URL.createObjectURL(blob);
-    let link = document.createElement("a");
+    const url = window.URL.createObjectURL(blob);    
     link.href = url;
     link.download = htmlFile.name;
-    link.click();    
-    return;
+    downloadHtml();
   }
 }
 

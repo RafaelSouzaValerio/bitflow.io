@@ -189,19 +189,19 @@
                 <ul class="two-columns">
                     <li>
                         <div>A resolução de conflitos inicia ao tentar criar o pull-request de <b>seu branch</b>, e no comparativo é exibida a mensagem que não poderá ser mergeado automaticamente</div>
-                        <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" />
+                        <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
                         <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
-                        <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" />
+                        <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
                         <div>Já no novo branch iremos mergear a branch de destino e resolver os conflitos que surgirem</div>
-                        <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" />
+                        <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
                         <div>Após resolver os conflitos no novo branch, crie o pull-request do novo branch para o branch de destino, nesse momento não devem existir conflitos</div>
-                        <img src="img/conflict-pr-seccond-thumb.webp" alt="Pull request sem conflito" onclick="openModalImg(this)" width="100%" height="100%" />
+                        <img src="img/conflict-pr-seccond-thumb.webp" alt="Pull request sem conflito" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                 </ul>
                 <div>
@@ -228,9 +228,7 @@
                 <ul class="two-columns no-list-style">
                     <li style="align-items: center;">
                         Gostou? faça o download desse fluxo e mantenha perto de você 
-                        <button onclick="downloadHtml()">                            
-                            <span>Download</span>
-                            <span>PDF</span>
+                        <button onclick="downloadHtml()">
                             <div id="load-pdf" class="loader-mini" title="carregando arquivo">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -251,7 +249,10 @@
                                 </rect>
                                 </svg>
                             </div>
+                            <span>Download</span>
+                            <span>PDF</span>
                         </button>
+                        <a style="display: none;" id="download-pdf" href="#" download="bit-flow.pdf"></a>
                     </li>
                 </ul>
             </section>
