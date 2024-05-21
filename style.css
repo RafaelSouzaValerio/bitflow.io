@@ -331,19 +331,19 @@ section h3 {
     margin-bottom: .2em;
 }
 
-section .question {
+section summary div:first-child {
     font-size: 1.4em;
     color: #652CBA;
 }
 
-section .answer {
+section summary div:nth-child(2) {
     margin-top: .2em;
     margin-bottom: 1.2em;
 }
 
 section p {
-    margin-bottom: 50px;
-    width: 60vw;
+    margin-bottom: 3em;
+    width: 70vw;
     margin: 0 auto;
     padding: 10px 20px 0;
     display: block;
@@ -356,12 +356,23 @@ section ul {
     text-align: start;
 }
 
+section ul summary {
+    margin-top: .5em;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+section ul summary img {
+    vertical-align: text-bottom;
+}
+
 section ul li {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     margin-top: 1.5em;
 }
+
     section ul:not(.no-list-style) li:before {
         content: "\27AF\a0";
     }
@@ -392,7 +403,24 @@ section ul.two-columns li img {
     cursor: pointer;
 }
 
+section ul li ul {
+    padding-inline-start: 0;
+}
+
+section ul li ul li {    
+    margin-top: .5em;
+}
+
+    section ul:not(.no-list-style) li ul li:before {
+        content: "\21C0\a0" !important;
+    }
+
+    section ul:not(.no-list-style) li ul.alert li:before {
+        content: "\002A\a0" !important;
+    }
+
 section footer {
+    margin-top: 2em;
     display: inline-block;
 }
 

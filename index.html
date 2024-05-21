@@ -61,7 +61,7 @@
                   <li><a href="#release">Release</a></li>
                   <li><a href="#release-fix">Release/Fix</a></li>
                   <li><a href="#conflict">Conflitos</a></li>
-                  <li><a href="#tips" class="off">Dicas</a></li>
+                  <li><a href="#tips">Dicas</a></li>
                   <li><a href="#download">Download</a></li>
                 </ul>
             </nav>
@@ -74,6 +74,64 @@
                     O bit-flow é um fluxo para o git, que utiliza um único branch de desenvolvimento para otimizar o controle de branches em uma organização
                     que utiliza ambientes de testes e produção, identificados a partir daqui como <span class="branch staging"></span> e <span class="branch master"></span> respectivamente
                 </p>
+                <footer>
+                    <h3><span style='font-size:1.2em;'>&#128204;</span> Requisitos</h3>
+                    <ul class="alert">
+                        <li>
+                            <div>
+                                Para aplicar esse fluxo é imprescindível atualizar o branch <span class="branch staging"></span> através do branch <span class="branch master"></span>.  Veja algumas opções para isso:
+                                <ul class="off">
+                                    <summary><span style='font-size:1em;'>&#128187;</span> Utilizando linha de comando</summary>
+                                    <li>
+                                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
+                                    </li>
+                                    <li>
+                                        <div>Faça checkout no <b>seu branch</b> novo</div>
+                                    </li>
+                                    <li>
+                                        <div>Execute um merge do branch <span class="branch master"></span> no <b>seu branch</b></div>
+                                    </li>
+                                    <li>
+                                        <div>Resolva os possíveis conflitos, caso ocorram</div>
+                                    </li>
+                                    <li>
+                                        <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
+                                    </li>
+                                    <li>
+                                        <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <summary><img src="https://desktop.github.com/images/desktop-icon.svg" height="40" loading="lazy"/> Utilizando o Github Desktop</summary>
+                                    <li>
+                                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
+                                    </li>
+                                    <li>
+                                        <div>Faça checkout no <b>seu branch</b> novo</div>
+                                    </li>
+                                    <li>
+                                        <div>No Github Desktop, acesse o menu <u>"branch"</u>, e selecione a opção <u>"update from master"</u></div>
+                                    </li>
+                                    <li>
+                                        <div>Resolva os possíveis conflitos, caso ocorram</div>
+                                    </li>
+                                    <li>
+                                        <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
+                                    </li>
+                                    <li>
+                                        <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            Para certificar que a operação foi realizada corretamente, faça checkout no branch <span class="branch staging"></span>, acesse o menu <u>"branch"</u>, selecione a opção <u>"compare"</u>
+                                            e compare com o branch <span class="branch master"></span>, <b>não podem existir commits na guia <u>behind</u></b>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </footer>
             </section>
             <section id="install" class="off">
                 <h2>Instalação</h2>
@@ -83,8 +141,10 @@
             </section>
             <section id="feat">
                 <h2>Feat</h2>
-                <div class="question">O que é um feat?</div>
-                <div class="answer"><span class="branch feat"></span> é um branch destinado a implementação de um recurso</div>
+                <summary>
+                    <div>O que é um feat?</div>
+                    <div><span class="branch feat"></span> é um branch destinado a implementação de um recurso</div>
+                </summary>
                 <h3>Como implementar um feat?</h3>
                 <div class="col-left">
                     <ul>
@@ -108,8 +168,10 @@
             </section>
             <section id="fix">
                 <h2>Fix</h2>
-                <div class="question">O que é um fix?</div>
-                <div class="answer"><span class="branch fix"></span> é um branch destinado a correções e ajustes</div>
+                <summary>
+                    <div>O que é um fix?</div>
+                    <div><span class="branch fix"></span> é um branch destinado a correções e ajustes</div>
+                </summary>
                 <h3>Como desenvolver um fix?</h3>
                 <div class="col-left">
                     <ul>
@@ -133,8 +195,10 @@
             </section>
             <section id="release">
                 <h2>Release</h2>
-                <div class="question">O que é um release?</div>
-                <div class="answer"><span class="branch release"></span> é um branch onde é preparada uma nova versão da aplicação</div>
+                <summary>
+                    <div>O que é um release?</div>
+                    <div><span class="branch release"></span> é um branch onde é preparada uma nova versão da aplicação</div>
+                </summary>
                 <h3>Como lançar um release?</h3>
                 <div class="col-left">
                     <ul>
@@ -168,8 +232,10 @@
             </section>
             <section id="release-fix">
                 <h2>Release/Fix</h2>
-                <div class="question">O que é um release/fix?</div>
-                <div class="answer"><span class="branch release-fix"></span> é um branch exclusivo para correções e ajustes de um <span class="branch release"></span></div>
+                <summary>
+                    <div>O que é um release/fix?</div>
+                    <div><span class="branch release-fix"></span> é um branch exclusivo para correções e ajustes de um <span class="branch release"></span></div>
+                </summary>
                 <h3>Como corrigir um release?</h3>
                 <div class="col-left">
                     <ul>
@@ -183,8 +249,10 @@
             </section>
             <section id="conflict">
                 <h2>Conflitos</h2>
-                <div class="question">O que são conflitos?</div>
-                <div class="answer">Existência de alterações no mesmo bloco de código de um arquivo</div>
+                <summary>
+                    <div>O que são conflitos?</div>
+                    <div>Existência de alterações no mesmo bloco de código de um arquivo</div>
+                </summary>
                 <h3>Como solucionar conflitos?</h3>
                 <ul class="two-columns">
                     <li>
@@ -217,11 +285,24 @@
                     </ul>
                 </footer>
             </section>
-            <section id="tips" class="off">
+            <section id="tips">
                 <h2>Dicas</h2>
-                <p>
-                    Nada aqui ainda
-                </p>
+                <ul>
+                    <li>
+                        <div>
+                            <b>Nunca crie um branch com base em <span class="branch staging"></span>!</b>
+                            <br/>
+                            Caso seja necessário tenha em mente que <b>seu branch</b> vai conter todas as implementações da base, ou seja não poderá ser mergeado diretamente no branch <span class="branch master"></span>, invalidando esse fluxo
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <b>Nunca crie um pull-request para o branch <span class="branch master"></span>!</b>
+                            <br/>
+                            Os branches a serem liberados devem compor um branch <span class="branch release"></span>, pois esse será mergeado integralmente nos branches <span class="branch staging"></span> e <span class="branch master"></span>
+                        </div>
+                    </li>
+                </ul>
             </section>
             <section id="download" class="no-print">
                 <h2>Download</h2>
