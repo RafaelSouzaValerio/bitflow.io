@@ -312,7 +312,7 @@ section {
 }
 
     .off {
-        display: none;
+        display: none !important;
     }
 
 section h2 {
@@ -356,13 +356,13 @@ section ul {
     text-align: start;
 }
 
-section ul summary {
+section hgroup {
     margin-top: .5em;
     text-align: center;
     font-size: 1.3em;
 }
 
-section ul summary img {
+section hgroup img {
     vertical-align: text-bottom;
 }
 
@@ -370,11 +370,15 @@ section ul li {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin-top: 1.5em;
+    margin-top: 1.2em;
 }
 
     section ul:not(.no-list-style) li:before {
         content: "\27AF\a0";
+    }
+
+    section ul.thin-arrow:not(.no-list-style) li:before {
+        content: "\21C0\a0" !important;
     }
 
     section ul:not(.no-list-style).alert li:before {
@@ -402,22 +406,6 @@ section ul.two-columns li img {
     margin: auto;
     cursor: pointer;
 }
-
-section ul li ul {
-    padding-inline-start: 0;
-}
-
-section ul li ul li {    
-    margin-top: .5em;
-}
-
-    section ul:not(.no-list-style) li ul li:before {
-        content: "\21C0\a0" !important;
-    }
-
-    section ul:not(.no-list-style) li ul.alert li:before {
-        content: "\002A\a0" !important;
-    }
 
 section footer {
     margin-top: 2em;
@@ -599,10 +587,6 @@ section#download button span {
     z-index: 1;
 }
 
-section#download button span:last-child {
-    margin-left: -20px;
-}
-
 section#download button:before,
 section#download button:after {
     background: #ffffff;
@@ -637,16 +621,9 @@ section#download button:active {
     box-shadow: inset 0 2px 2px rgba(0, 0, 0, .25);
 }
 
-section#download button span:first-child {
-    display: none;
-}
-
-section#download button:hover span:first-child {
+section#download button span {
+    margin-left: -20px;
     display: inline-block;
-}
-
-section#download button:hover span:last-child {
-    display: none;
 }
 
 .loader-mini {
@@ -655,7 +632,7 @@ section#download button:hover span:last-child {
     text-align: center;
     padding: 1em;
     margin: 0 auto 1em;
-    display: inline-block !important;
+    display: inline;
     vertical-align: top;
 }
 
@@ -678,10 +655,6 @@ button .loader-mini {
     backdrop-filter: blur(3px);
     margin: 0;
     padding: 10%;
-}
-
-button .loader-mini ~ span {
-    display: none !important;
 }
 
 #mobile-toggle {

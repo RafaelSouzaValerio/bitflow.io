@@ -76,58 +76,52 @@
                 </p>
                 <footer>
                     <h3><span style='font-size:1.2em;'>&#128204;</span> Requisitos</h3>
-                    <ul class="alert">
+                    <p>Para aplicar esse fluxo é imprescindível atualizar o branch <span class="branch staging"></span> através do branch <span class="branch master"></span>.  Veja algumas opções para isso:</p>
+                    <hgroup class="off"><span style='font-size:1em;'>&#128187;</span> Utilizando linha de comando</hgroup>
+                    <ul class="thin-arrow off">
+                        <li>
+                            <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
+                        </li>
+                        <li>
+                            <div>Faça checkout no <b>seu branch</b> novo</div>
+                        </li>
+                        <li>
+                            <div>Execute um merge do branch <span class="branch master"></span> no <b>seu branch</b></div>
+                        </li>
+                        <li>
+                            <div>Resolva os possíveis conflitos, caso ocorram</div>
+                        </li>
+                        <li>
+                            <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
+                        </li>
+                        <li>
+                            <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
+                        </li>
+                    </ul>
+                    <hgroup><img src="https://desktop.github.com/images/desktop-icon.svg" alt="Icone Github Desktop" height="40" width="40" loading="lazy"/> Utilizando o Github Desktop</hgroup>
+                    <ul class="thin-arrow">
+                        <li>
+                            <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
+                        </li>
+                        <li>
+                            <div>Faça checkout no <b>seu branch</b> novo</div>
+                        </li>
+                        <li>
+                            <div>No Github Desktop, acesse o menu <u>"branch"</u>, e selecione a opção <u>"update from master"</u></div>
+                        </li>
+                        <li>
+                            <div>Resolva os possíveis conflitos, caso ocorram</div>
+                        </li>
+                        <li>
+                            <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
+                        </li>
+                        <li>
+                            <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
+                        </li>
                         <li>
                             <div>
-                                Para aplicar esse fluxo é imprescindível atualizar o branch <span class="branch staging"></span> através do branch <span class="branch master"></span>.  Veja algumas opções para isso:
-                                <ul class="off">
-                                    <summary><span style='font-size:1em;'>&#128187;</span> Utilizando linha de comando</summary>
-                                    <li>
-                                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
-                                    </li>
-                                    <li>
-                                        <div>Faça checkout no <b>seu branch</b> novo</div>
-                                    </li>
-                                    <li>
-                                        <div>Execute um merge do branch <span class="branch master"></span> no <b>seu branch</b></div>
-                                    </li>
-                                    <li>
-                                        <div>Resolva os possíveis conflitos, caso ocorram</div>
-                                    </li>
-                                    <li>
-                                        <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
-                                    </li>
-                                    <li>
-                                        <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <summary><img src="https://desktop.github.com/images/desktop-icon.svg" height="40" loading="lazy"/> Utilizando o Github Desktop</summary>
-                                    <li>
-                                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
-                                    </li>
-                                    <li>
-                                        <div>Faça checkout no <b>seu branch</b> novo</div>
-                                    </li>
-                                    <li>
-                                        <div>No Github Desktop, acesse o menu <u>"branch"</u>, e selecione a opção <u>"update from master"</u></div>
-                                    </li>
-                                    <li>
-                                        <div>Resolva os possíveis conflitos, caso ocorram</div>
-                                    </li>
-                                    <li>
-                                        <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
-                                    </li>
-                                    <li>
-                                        <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            Para certificar que a operação foi realizada corretamente, faça checkout no branch <span class="branch staging"></span>, acesse o menu <u>"branch"</u>, selecione a opção <u>"compare"</u>
-                                            e compare com o branch <span class="branch master"></span>, <b>não podem existir commits na guia <u>behind</u></b>
-                                        </div>
-                                    </li>
-                                </ul>
+                                Para certificar que a operação foi realizada corretamente, faça checkout no branch <span class="branch staging"></span>, acesse o menu <u>"branch"</u>, selecione a opção <u>"compare"</u>
+                                e compare com o branch <span class="branch master"></span>, <b>não podem existir commits na guia <u>behind</u></b>
                             </div>
                         </li>
                     </ul>
@@ -310,7 +304,7 @@
                     <li style="align-items: center;">
                         Gostou? faça o download desse fluxo e mantenha perto de você 
                         <button onclick="downloadHtml()">
-                            <div id="load-pdf" class="loader-mini" title="carregando arquivo">
+                            <div id="load-pdf" class="loader-mini off" title="carregando arquivo">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                 <rect x="0" y="0" width="4" height="20" fill="#333">
@@ -330,7 +324,6 @@
                                 </rect>
                                 </svg>
                             </div>
-                            <span>Download</span>
                             <span>PDF</span>
                         </button>
                         <a style="display: none;" id="download-pdf" href="#" download="bit-flow.pdf"></a>

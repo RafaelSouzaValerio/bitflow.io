@@ -206,108 +206,96 @@ window.onload = function(){
   drawGraphRelease();
   drawGraphReleaseFix();
   drawGraphConf();
-
-  generateHtmlFile();
 }
-
-const htmlFile = { 
-  name: 'bit-flow.pdf',
-  pdf: null,
-  running: false
-};
 
 async function generateHtmlFile() {
 
-  if (htmlFile.pdf) return;
-  if (htmlFile.running) return;
+  let link = document.getElementById('download-pdf');
+  if (!link || !link.href.includes('#')) return;
 
-  htmlFile.running = true;
-
-  setTimeout(async function() {
-    let cover;
-    let header = document.querySelector('header');
-    await html3pdf()
-            .set({
-              margin: [0,0,0,0],
-              jsPDF:{ orientation: 'portrait', unit: 'px', format: [window.innerWidth, window.innerHeight] }
-            })
-            .from(header)
-            .toPdf()
-            .get('pdf').then(async pdf => {      
-              if (pdf) {
-                //window.open(pdf.output('bloburl'), '_blank');
-                cover = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer());
-              }
-            });
-      
-    let printNode = document.createElement('main');
-    let sections = document.querySelectorAll('main section:not(.off):not(.no-print)');
-    sections.forEach(e => {
-      let node = e.cloneNode(true);
-      printNode.appendChild(node);
-    });
+  let cover;
+  let header = document.querySelector('header');
+  await html3pdf()
+          .set({
+            margin: [0,0,0,0],
+            jsPDF:{ orientation: 'portrait', unit: 'px', format: [window.innerWidth, window.innerHeight] }
+          })
+          .from(header)
+          .toPdf()
+          .get('pdf').then(async pdf => {      
+            if (pdf) {
+              //window.open(pdf.output('bloburl'), '_blank');
+              cover = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer());
+            }
+          });
     
-    let html = document.documentElement, body = document.body;
-    let pdfWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+  let printNode = document.createElement('main');
+  let sections = document.querySelectorAll('main section:not(.off):not(.no-print)');
+  sections.forEach(e => {
+    let node = e.cloneNode(true);
+    printNode.appendChild(node);
+  });
+  
+  let html = document.documentElement, body = document.body;
+  let pdfWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
 
-    let main = document.querySelector('main');
-    let footerHeight = document.querySelector('footer.endpage').offsetHeight,
-        mainHeight = getComputedStyle(main),
-        padding = parseInt(mainHeight.paddingTop) + parseInt(mainHeight.paddingBottom);
+  let main = document.querySelector('main');
+  let mainHeight = getComputedStyle(main),
+      padding = parseInt(mainHeight.paddingTop) + parseInt(mainHeight.paddingBottom);
 
-    mainHeight = main.clientHeight - padding;
-    if (graphOptions.responsive) {
-      footerHeight += footerHeight*2;
-    }
+  mainHeight = main.clientHeight - padding;
 
-    html3pdf()
-      .set({
-        margin: [0,0,0,0],
-        jsPDF:{ orientation: 'portrait', unit: 'px', format: [pdfWidth, mainHeight - footerHeight] }
-      })
-      .from(printNode)
-      .toPdf()
-      .get('pdf').then(async pdf => {
-        if (pdf) {
-          //window.open(pdf.output('bloburl'), '_blank');
-          let doc = PDFLib.PDFDocument;
-          let main = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer())
-          let pdfCover = await doc.load(cover);
-          let pdfMain = await doc.load(main);
-          
-          let merged = await doc.create(); 
-          let copiedPagesCover = await merged.copyPages(pdfCover, pdfCover.getPageIndices());
-          copiedPagesCover.forEach((page) => merged.addPage(page)); 
-          let copiedPagesMain = await merged.copyPages(pdfMain, pdfMain.getPageIndices());
-          copiedPagesMain.forEach((page) => merged.addPage(page)); 
-          htmlFile.pdf = await merged.save();        
-          htmlFile.running = false;
+  await html3pdf()
+          .set({
+            margin: [0,0,0,0],
+            jsPDF:{ orientation: 'portrait', unit: 'px', format: [pdfWidth, mainHeight] }
+          })
+          .from(printNode)
+          .toPdf()
+          .get('pdf').then(async pdf => {
+            if (pdf) {
+              //window.open(pdf.output('bloburl'), '_blank');
+              let doc = PDFLib.PDFDocument;
+              let main = await fetch(pdf.output('bloburl')).then(res => res.arrayBuffer())
+              let pdfCover = await doc.load(cover);
+              let pdfMain = await doc.load(main);
+              
+              let merged = await doc.create(); 
+              let copiedPagesCover = await merged.copyPages(pdfCover, pdfCover.getPageIndices());
+              copiedPagesCover.forEach((page) => merged.addPage(page)); 
+              let copiedPagesMain = await merged.copyPages(pdfMain, pdfMain.getPageIndices());
+              copiedPagesMain.forEach((page) => merged.addPage(page)); 
+              let file = await merged.save();  
 
-          let load = document.getElementById('load-pdf');
-          if (load) {
-            load.parentElement.removeChild(load);
-          }
-        }
-      });
-  }, 500);  
+              if (file) {
+                const blob = new Blob([file]);
+                const url = window.URL.createObjectURL(blob);    
+                link.href = url;
+                link.download = 'bit-flow.pdf';
+                downloadHtml();
+              }
+            }
+          });
 }
 
-function downloadHtml() {
+async function downloadHtml() {
 
   let link = document.getElementById('download-pdf');
   if (!link) return;
 
-  if (!link.href.includes('#')) {
-    link.click();
-    return;
+  let loadPdf = document.getElementById('load-pdf');
+  if (loadPdf) {
+    loadPdf.classList.remove('off');
   }
 
-  if (htmlFile.pdf) {
-    const blob = new Blob([htmlFile.pdf]);
-    const url = window.URL.createObjectURL(blob);    
-    link.href = url;
-    link.download = htmlFile.name;
-    downloadHtml();
+  await generateHtmlFile();
+
+  if (!link.href.includes('#')) {
+    link.click();
+  }
+
+  if (loadPdf) {
+    loadPdf.classList.add('off');
   }
 }
 
