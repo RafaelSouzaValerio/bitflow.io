@@ -31,7 +31,7 @@
     </head>
     <body>
         <header>
-            <div class="bg">  
+            <div class="bg">
                 <div class="arrow bouncy">  
                     <svg height="25" width="50">
                         <polygon points="0,0 25,10 50,0 25,25" fill="rgba(255,255,255,.5)" stroke-width="0" stroke="rgba(255,255,255,.3)"/>
@@ -54,7 +54,7 @@
             <nav role="navigation" class="col-md-12 text-right">
                 <ul class="anchors">
                   <li><a href="#about">Início</a></li>
-                  <li><a href="#development">Desenv</a></li>
+                  <li><a href="#development" id="menu-development"></a></li>
                   <li><a href="#release">Release</a></li>
                   <li><a href="#conflict">Conflitos</a></li>
                   <li><a href="#tips">Dicas</a></li>
@@ -79,7 +79,7 @@
                 <hgroup class="off"><span style='font-size:1em;'>&#128187;</span> Utilizando linha de comando</hgroup>
                 <ul class="thin-arrow off">
                     <li>
-                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
+                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado nomear de forma a facilitar a identificação para futura exclusão</div>
                     </li>
                     <li>
                         <div>Faça checkout no <b>seu branch</b> novo</div>
@@ -100,7 +100,7 @@
                 <hgroup><img src="https://desktop.github.com/images/desktop-icon.svg" alt="Icone Github Desktop" height="40" width="40" loading="lazy"/> Utilizando o Github Desktop</hgroup>
                 <ul class="thin-arrow">
                     <li>
-                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado o nomear de forma a facilitar a identificação para futura exclusão</div>
+                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado nomear de forma a facilitar a identificação para futura exclusão</div>
                     </li>
                     <li>
                         <div>Faça checkout no <b>seu branch</b> novo</div>
@@ -143,60 +143,64 @@
                     <li>
                         <div><span class="branch fix"></span>: exclusivo para correções e ajustes, nomeie com o padrão de prefixo <u>"fix/"</u></div>
                     </li>
-                    <li>
+                    <li class="off">
                         <div><span class="branch ref"></span>: próprio para refatoração, nomeie com o padrão de prefixo <u>"ref/"</u></div>
                     </li>
                 </ul>
                 <h3>Como implementar esses branches?</h3>
                 <ul>
-                    <li><div>Crie seu branch com base no branch <span class="branch master"></span></div></li>
+                    <li><div>Crie o branch com base no branch <span class="branch master"></span></div></li>
                     <li><div>Ao concluir o desenvolvimento, faça um pull-request para o branch <span class="branch staging"></span></div></li>
-                    <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request</div></li>
-                    <li><div>Quando aprovado faça um pull-request para o respectivo <span class="branch release"></span></div></li>
+                    <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para o branch <span class="branch staging"></span></div></li>
+                    <li><div>Quando aprovado, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
                 </ul>
-                <div class="col-3">
+                <div class="col-left">
                     <h4>Feat</h4>
                     <div id="graph-feat" class="graph"></div>
                 </div>
-                <div class="col-3">
+                <div class="col-right">
                     <h4>Fix</h4>
                     <div id="graph-fix" class="graph"></div>
                 </div>
-                <div class="col-3">
+                <div class="col-3 off">
                     <h4>Ref</h4>
                     <div id="graph-ref" class="graph"></div>
                 </div>
                 <footer>
-                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
+                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">                        
                         <li><div>Todos os branches <u>devem iniciar sempre com base no branch</u> <span class="branch master"></span></div></li>
-                        <li>
-                            <div>Esses branches podem ser mergeado e testado diretamente no <span class="branch release"></span> caso necessite ser liberado naquela versão</div>
-                        </li>
+                        <li><div>Esses branches podem ser mergeado e testado diretamente no <span class="branch release"></span>, caso necessite ser liberado naquela versão</div></li>
+                        <li><div>Caso o branch do respectivo <span class="branch release"></span> não exista, o crie, seguindo padrão de nomenclatura visto em <a href="#release"><u>O que é um release?</u></a></div></li>
+                        <li><div>Podem existir branches além dos descritos nessa seção, porém o fluxo deve ser o mesmo</div></li>
                     </ul>
                 </footer>
             </section>
             <section id="release">
                 <h2>Release</h2>
-                <summary>
+                <summary id="release-summary">
                     <div>O que é um release?</div>
-                    <div><span class="branch release"></span> é um branch onde é preparada uma nova versão da aplicação</div>
+                    <div><span class="branch release"></span> é o branch onde é preparada uma nova versão da aplicação, nomeie com o padrão de nomenclatura <u>"release/versao/"</u>, sendo:</div>
+                    <ul class="thin-arrow">
+                        <li><span>Prefixo <u>"release/"</u> </span></li>
+                        <li><span>Versão da aplicação, exemplo: <u>"1.2024.0523"</u> </span></li>
+                    </ul>
                 </summary>
                 <h3>Como lançar um release?</h3>
                 <div class="col-left">
                     <ul>
-                        <li><div>Uma nova versão começa sempre com base no branch <span class="branch master"></span></div></li>
-                        <li><div>Mergear nesse branch todos os braches que deseja liberar nesse <span class="branch release"></span></div></li>
-                        <li><div>Excluir os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</div></li>
-                        <li><div>Caso necessite ajustes as alterações devem ser realizadas em um branch <span class="branch release-fix"></span> com base no branch <span class="branch release"></span> e criar um novo pull-request</div></li>
-                        <li><div>Após validar deve-se criar um pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></div></li>
+                        <li><div>Crie o branch com base no branch <span class="branch master"></span></div></li>
+                        <li><div>Faça o merge de todos os braches que deseja liberar nesse <span class="branch release"></span></div></li>
+                        <li><div>Exclua os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</div></li>
+                        <li><div>Caso necessite ajustes consulte a seção <a href="#release-fix"><u>release/fix</u></a></div></li>
+                        <li><div>Após validar a versão, crie um pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">
                     <div id="graph-release" class="graph"></div>
                 </div>
                 <footer>
-                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
+                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">
                         <li>
                             <div>Todo branch mergeado em <span class="branch release"></span> deve ser excluído após a operação, mantendo no repositório apenas branches ativos</div>
@@ -210,18 +214,21 @@
                         <li>
                             <div>Sempre ao ser liberado, o branch <span class="branch release"></span> deve ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></span></div>
                         </li>
+                        <li>
+                            <div>O branch <span class="branch release"></span> pode ser excluído após ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></div>
+                        </li>
                     </ul>
                 </footer>
             </section>
             <section id="release-fix">
                 <h3>Como corrigir um release?</h3>
                 <summary>
-                    Utilize um branch <span class="branch release-fix"></span>, que é exclusivo para essa situação
+                    Utilize um branch <span class="branch release-fix"></span>, que é exclusivo para essa situação, nomeie com o padrão de prefixo <u>"release/fix/"</u>
                 </summary>                
                 <div class="col-left">
                     <ul>
-                        <li><div>O <span class="branch release-fix"></span> de uma versão começa sempre com base no branch do respectivo <span class="branch release"></span></div></li>
-                        <li><div>Ao concluir o desenvolvimento, deve-se criar um pull-request no branch do respectivo <span class="branch release"></span></div></li>
+                        <li><div>Crie o branch com base no branch do respectivo <span class="branch release"></span></div></li>
+                        <li><div>Ao concluir o desenvolvimento, faça um pull-request para branch do respectivo <span class="branch release"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -241,11 +248,11 @@
                         <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
-                        <div>Nesse momento devemos abandonar esse pull-request e criar um novo branch com base no <b>seu branch</b>, nomeando o mesmo no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
+                        <div>Nesse momento abandone esse pull-request e crie um novo branch com base no <b>seu branch</b>, nomeando no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
                         <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
-                        <div>Já no novo branch iremos mergear a branch de destino e resolver os conflitos que surgirem</div>
+                        <div>Faça o checkout para o novo branch, em seguida faça um merge do branch de destino e resolva os conflitos que surgirem</div>
                         <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
@@ -257,7 +264,7 @@
                     <div id="graph-conf" class="graph"></div>
                 </div>
                 <footer>
-                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anote aí</h3>
+                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">
                         <li><div>Essa situação tende a surgir ao criar o pull-request para <span class="branch staging"></span>, porém <b>todo pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</div></li>
                         <li><div>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar o pull-request para que essa resolução funcione e não interfira no fluxo</div></li>
