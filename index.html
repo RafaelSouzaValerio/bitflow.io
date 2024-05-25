@@ -294,33 +294,35 @@
             </section>
             <section id="download" class="no-print">
                 <h2>Download</h2>
-                <ul class="two-columns no-list-style">
+                <ul class="no-list-style">
                     <li style="align-items: center;">
-                        Gostou? faça o download desse fluxo e mantenha perto de você 
-                        <button onclick="downloadHtml()">
-                            <div id="load-pdf" class="loader-mini off" title="carregando arquivo">
-                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-                                <rect x="0" y="0" width="4" height="20" fill="#333">
-                                    <animate attributeName="opacity" attributeType="XML"
-                                    values="1; .2; 1" 
-                                    begin="0s" dur="0.6s" repeatCount="indefinite" />
-                                </rect>
-                                <rect x="7" y="0" width="4" height="20" fill="#333">
-                                    <animate attributeName="opacity" attributeType="XML"
-                                    values="1; .2; 1" 
-                                    begin="0.2s" dur="0.6s" repeatCount="indefinite" />
-                                </rect>
-                                <rect x="14" y="0" width="4" height="20" fill="#333">
-                                    <animate attributeName="opacity" attributeType="XML"
-                                    values="1; .2; 1" 
-                                    begin="0.4s" dur="0.6s" repeatCount="indefinite" />
-                                </rect>
-                                </svg>
-                            </div>
-                            <span>PDF</span>
-                        </button>
-                        <a style="display: none;" id="download-pdf" href="#" download="bit-flow.pdf"></a>
+                        <div>
+                            Gostou? faça o download desse fluxo e mantenha perto de você 
+                            <button onclick="downloadHtml()">
+                                <div id="load-pdf" class="loader-mini off" title="carregando arquivo">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                    <rect x="0" y="0" width="4" height="20" fill="#333">
+                                        <animate attributeName="opacity" attributeType="XML"
+                                        values="1; .2; 1" 
+                                        begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                    </rect>
+                                    <rect x="7" y="0" width="4" height="20" fill="#333">
+                                        <animate attributeName="opacity" attributeType="XML"
+                                        values="1; .2; 1" 
+                                        begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+                                    </rect>
+                                    <rect x="14" y="0" width="4" height="20" fill="#333">
+                                        <animate attributeName="opacity" attributeType="XML"
+                                        values="1; .2; 1" 
+                                        begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+                                    </rect>
+                                    </svg>
+                                </div>
+                                <span>PDF</span>
+                            </button>
+                            <a style="display: none;" id="download-pdf" href="#" download="bit-flow.pdf"></a>
+                        </div>
                     </li>
                 </ul>
             </section>
@@ -329,6 +331,7 @@
             <p>Fluxo utilizado pela equipe de desenvolvimento de Ahreas-Folha</p>
             <p>Envie sua sugestão para rafael.souza@superlogica.com </p>
         </footer>
+        <iframe id="iframe-pdf" width="1240" height="0" scrolling="no" style="border:none;" title="Pdf iframe"></iframe>
     </body>    
     <div id="modalImg" class="modal">
         <img class="modal-content" alt="modal image">
