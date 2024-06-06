@@ -4,13 +4,18 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="cheatsheet bit-flow: sistema de branches eficiente usando o bit-flow">
+        <meta name="description" content="Sistema de branches eficiente usando o bit-flow">
+        <meta property="og:image" content="img/bitflow-og.webp">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1024">
+        <meta property="og:image:height" content="1024">
+
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
         <link rel="manifest" href="site.webmanifest">
 
-        <title>Cheatsheet do bit-flow</title>
+        <title>Cheatsheet bit-flow</title>
 
         <link rel="stylesheet" href="style.css" type="text/css" media="screen,print">
         <script type="text/javascript" src="app.js" async></script>
@@ -138,13 +143,13 @@
                 </summary>
                 <ul class="thin-arrow">
                     <li>
-                        <div><span class="branch feat"></span>: destinado a implementação de um recurso, nomeie com o padrão de prefixo <u>"feat/"</u></div>
+                        <div><span class="branch feat"></span>: destinado a implementação de um recurso, nomeado com o padrão de prefixo <u>"feat/"</u></div>
                     </li>
                     <li>
-                        <div><span class="branch fix"></span>: exclusivo para correções e ajustes, nomeie com o padrão de prefixo <u>"fix/"</u></div>
+                        <div><span class="branch fix"></span>: exclusivo para correções e ajustes, nomeado com o padrão de prefixo <u>"fix/"</u></div>
                     </li>
                     <li class="off">
-                        <div><span class="branch ref"></span>: próprio para refatoração, nomeie com o padrão de prefixo <u>"ref/"</u></div>
+                        <div><span class="branch ref"></span>: próprio para refatoração, nomeado com o padrão de prefixo <u>"ref/"</u></div>
                     </li>
                 </ul>
                 <h3>Como implementar esses branches?</h3>
@@ -181,7 +186,7 @@
                 <h2>Release</h2>
                 <summary id="release-summary">
                     <div>O que é um release?</div>
-                    <div><span class="branch release"></span> é o branch onde é preparada uma nova versão da aplicação, nomeie com o padrão de nomenclatura <u>"release/versao/"</u>, sendo:</div>
+                    <div>Trata-se do branch onde é preparada uma nova versão da aplicação, nomeado com o padrão de nomenclatura <u>"release/versao/"</u>, sendo:</div>
                     <ul class="thin-arrow">
                         <li><span>Prefixo <u>"release/"</u> </span></li>
                         <li><span>Versão da aplicação, exemplo: <u>"1.2024.0523"</u> </span></li>
@@ -224,7 +229,7 @@
             <section id="release-fix">
                 <h3>Como corrigir um release?</h3>
                 <summary>
-                    Utilize um branch <span class="branch release-fix"></span>, que é exclusivo para essa situação, nomeie com o padrão de prefixo <u>"release/fix/"</u>
+                    Utilize um branch <span class="branch release-fix"></span>, que é exclusivo para essa situação, nomeando com o padrão de prefixo <u>"release/fix/"</u>
                 </summary>                
                 <div class="col-left">
                     <ul>
@@ -286,11 +291,32 @@
                     </li>
                     <li>
                         <div>
+                            <b>Evite merge do branch <span class="branch staging"></span> no seu branch!</b>
+                            <br/>
+                            Nesse fluxo essa necessidade pode aparecer apenas em caso de conflito, portanto consulte a seção <a href="#conflict"><u>Como solucionar conflitos?</u></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
                             <b>Nunca crie um pull-request para o branch <span class="branch master"></span>!</b>
                             <br/>
                             Os branches a serem liberados devem compor um branch <span class="branch release"></span>, pois esse será mergeado integralmente nos branches <span class="branch staging"></span> e <span class="branch master"></span>
                         </div>
                     </li>
+                    <li>
+                        <div>
+                            <b>Atenção as dependência ou compartilhamento de branch!</b>
+                            <br/>
+                            Quando houver a dependência ou a necessidade de operar em um branch já existente, que não seja de sua autoria, alinhe com o responsável e procurem a melhor forma de se manter dentro do fluxo
+                        </div>
+                    </li>
+                    <!-- <li>
+                        <div>
+                            <b>Identifique corretamente seu <u>commit</u>!</b>
+                            <br/>
+                            Para efeitos de histórico o relevante é o commit, portanto o descreva de forma clara e específica
+                        </div>
+                    </li> -->
                 </ul>
             </section>
             <section id="download" class="no-print">
