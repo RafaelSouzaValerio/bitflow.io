@@ -72,37 +72,51 @@
             <section id="about">
                 <h2>Sobre</h2>
                 <p>
-                    O bit-flow é um fluxo para o git, que utiliza um único branch de desenvolvimento para otimizar o controle de branches em uma organização
-                    que utiliza ambientes de testes e produção, identificados a partir daqui como <span class="branch staging"></span> e <span class="branch master"></span> respectivamente
+                    O bit-flow é um fluxo para o git, que utiliza um único branch de desenvolvimento para otimizar o controle de branches onde
+                    se utiliza branches fixos para os ambientes de testes e produção
                 </p>
-                <h3><span style='font-size:1.2em;'>&#128204;</span> Requisitos</h3>
+                <h3><span style='font-size:1.2em;'>&#128204;</span> Por onde começar?</h3>
+                <summary style="padding-top: 2em">
+                    <div>Identifique os tipos de branches</div>
+                </summary>
                 <p>
-                    Para aplicar esse fluxo é imprescindível atualizar o branch <span class="branch staging"></span> através do branch <span class="branch master"></span>.  
+                    Utilizaremos prefixos tipados para nomeação dos branches, isso facilitará o uso do fluxo.
                     <br/>
-                    Veja algumas opções para isso:
+                    Confira as nomenclaturas e o que deve compor cada tipo de branch
                 </p>
-                <hgroup class="off"><span style='font-size:1em;'>&#128187;</span> Utilizando linha de comando</hgroup>
-                <ul class="thin-arrow off">
+                <ul class="thin-arrow">
                     <li>
-                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado nomear de forma a facilitar a identificação para futura exclusão</div>
+                        <div><span class="branch feat"></span>: Implementação de um recurso, nomeado com o prefixo <u>"feat/"</u></div>
                     </li>
                     <li>
-                        <div>Faça checkout no <b>seu branch</b> novo</div>
+                        <div><span class="branch fix"></span>: Correções e ajustes, nomeado com o prefixo <u>"fix/"</u></div>
+                    </li>
+                    <li class="off">
+                        <div><span class="branch ref"></span>: Refatoração, nomeado com o prefixo <u>"ref/"</u></div>
                     </li>
                     <li>
-                        <div>Execute um merge do branch <span class="branch master"></span> no <b>seu branch</b></div>
+                        <div><span class="branch release"></span>: Versionamento para produção, nomeado com o prefixo <u>"release/"</u></div>
                     </li>
                     <li>
-                        <div>Resolva os possíveis conflitos, caso ocorram</div>
+                        <div><span class="branch release-fix"></span>: Correções e ajustes de um versionamento, nomeado com o prefixo <u>"release/fix/"</u></div>
                     </li>
                     <li>
-                        <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
+                        <div><span class="branch conf"></span>: Resolução de conflitos, nomeado com o prefixo <u>"conf/"</u></div>
                     </li>
                     <li>
-                        <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
+                        <div><span class="branch staging"></span>: Testes de itens em desenvolvimento, branch fixo de nome <u>"staging"</u></div>
+                    </li>
+                    <li>
+                        <div><span class="branch master"></span>: Versão atual em produção, branch fixo de nome <u>"master"</u></div>
                     </li>
                 </ul>
-                <hgroup><img src="https://desktop.github.com/images/desktop-icon.svg" alt="Icone Github Desktop" height="40" width="40" loading="lazy"/> Utilizando o Github Desktop</hgroup>
+                <summary>
+                    <div>Prepare o ambiente</div>
+                </summary>
+                <p>
+                    Para aplicar esse fluxo é necessário que o o branch <span class="branch staging"></span> esteja em sincronia com o branch <span class="branch master"></span>.
+                    <br/>
+                </p>
                 <ul class="thin-arrow">
                     <li>
                         <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado nomear de forma a facilitar a identificação para futura exclusão</div>
@@ -111,7 +125,7 @@
                         <div>Faça checkout no <b>seu branch</b> novo</div>
                     </li>
                     <li>
-                        <div>No Github Desktop, acesse o menu <u>"branch"</u>, e selecione a opção <u>"update from master"</u></div>
+                        <div>Execute um <u>merge</u> do branch <span class="branch master"></span> no <b>seu branch</b></div>
                     </li>
                     <li>
                         <div>Resolva os possíveis conflitos, caso ocorram</div>
@@ -124,8 +138,9 @@
                     </li>
                     <li>
                         <div>
-                            Para certificar que a operação foi realizada corretamente, faça checkout no branch <span class="branch staging"></span>, acesse o menu <u>"branch"</u>, selecione a opção <u>"compare"</u>
-                            e compare com o branch <span class="branch master"></span>, <b>não podem existir commits na guia <u>behind</u></b>
+                            Para certificar que a operação foi realizada corretamente, basta verificar a situação do branch <span class="branch staging"></span> via web,
+                            a coluna <u>behind</u> deve estar zerada
+                            <img src="img/behind_zero.webp" alt="Staging com coluna behind zerada" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy" style="object-fit: contain;"/>
                         </div>
                     </li>
                 </ul>
@@ -143,21 +158,21 @@
                 </summary>
                 <ul class="thin-arrow">
                     <li>
-                        <div><span class="branch feat"></span>: destinado a implementação de um recurso, nomeado com o padrão de prefixo <u>"feat/"</u></div>
+                        <div><span class="branch feat"></span>: Destinado a implementação de um recurso, nomeado com o prefixo <u>"feat/"</u></div>
                     </li>
                     <li>
-                        <div><span class="branch fix"></span>: exclusivo para correções e ajustes, nomeado com o padrão de prefixo <u>"fix/"</u></div>
+                        <div><span class="branch fix"></span>: Exclusivo para correções e ajustes, nomeado com o prefixo <u>"fix/"</u></div>
                     </li>
                     <li class="off">
-                        <div><span class="branch ref"></span>: próprio para refatoração, nomeado com o padrão de prefixo <u>"ref/"</u></div>
+                        <div><span class="branch ref"></span>: Próprio para refatoração, nomeado com o prefixo <u>"ref/"</u></div>
                     </li>
                 </ul>
                 <h3>Como implementar esses branches?</h3>
                 <ul>
                     <li><div>Crie o branch com base no branch <span class="branch master"></span></div></li>
-                    <li><div>Ao concluir o desenvolvimento, faça um pull-request para o branch <span class="branch staging"></span></div></li>
-                    <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para o branch <span class="branch staging"></span></div></li>
-                    <li><div>Quando aprovado, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
+                    <li><div>Ao concluir o desenvolvimento, faça um pull-request para o branch <span class="branch staging"></span>, onde os testes serão realizados</div></li>
+                    <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para o branch <span class="branch staging"></span>, para novos testes</div></li>
+                    <li><div>Quando aprovado e pronto para ser liberado em produção, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
                 </ul>
                 <div class="col-left">
                     <h4>Feat</h4>
@@ -175,7 +190,7 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">                        
                         <li><div>Todos os branches <u>devem iniciar sempre com base no branch</u> <span class="branch master"></span></div></li>
-                        <li><div>Esses branches podem ser mergeado e testado diretamente no <span class="branch release"></span>, caso necessite ser liberado naquela versão</div></li>
+                        <li><div>Esses branches podem ser mergeados e testados diretamente no <span class="branch release"></span>, caso necessitem serem liberados naquela versão</div></li>
                         <li><div>Caso o branch do respectivo <span class="branch release"></span> não exista, o crie de acordo com a versão especificada no ticket, seguindo o padrão de nomenclatura visto em <a href="#release"><u>O que é um release?</u></a></div></li>
                         <li><div>Caso o ticket ainda não possua uma versão específica, solicite ao seu líder essa informação</div></li>
                         <li><div>Podem existir branches além dos descritos nessa seção, porém o fluxo deve ser o mesmo</div></li>
@@ -186,7 +201,7 @@
                 <h2>Release</h2>
                 <summary id="release-summary">
                     <div>O que é um release?</div>
-                    <div>Trata-se do branch onde é preparada uma nova versão da aplicação, nomeado com o padrão de nomenclatura <u>"release/versao/"</u>, sendo:</div>
+                    <div>Trata-se do branch onde é preparada uma nova versão da aplicação, nomeado com o padrão de nomenclatura <u>"release/versao"</u>, sendo:</div>
                     <ul class="thin-arrow">
                         <li><span>Prefixo <u>"release/"</u> </span></li>
                         <li><span>Versão da aplicação, exemplo: <u>"1.2024.0523"</u> </span></li>
@@ -240,6 +255,14 @@
                 <div class="col-right">
                     <div id="graph-release-fix" class="graph"></div>
                 </div>
+                <footer>
+                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
+                    <ul class="alert">
+                        <li>
+                            <div>As correções e ajustes podem ser realizadas em um branch de desenvolvimento, porém é imprescindível que seja mergeado também no branch <span class="branch staging"></span></div>
+                        </li>
+                    </ul>
+                </footer>
             </section>
             <section id="conflict">
                 <h2>Conflitos</h2>
@@ -258,7 +281,7 @@
                         <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
-                        <div>Faça o checkout para o novo branch, em seguida faça um merge do branch de destino e resolva os conflitos que surgirem</div>
+                        <div>Faça o checkout para o novo branch, em seguida faça um merge do <u>branch de destino</u> e resolva os conflitos que surgirem</div>
                         <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
@@ -275,12 +298,13 @@
                         <li><div>Essa situação tende a surgir ao criar o pull-request para <span class="branch staging"></span>, porém <b>todo pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</div></li>
                         <li><div>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar o pull-request para que essa resolução funcione e não interfira no fluxo</div></li>
                         <li><div>Para validar sua resolução basta comparar <b>seu branch</b> original com o branch de destino, o conflito ainda deve existir, pois toda operação (merge e pull-request) foi realizado em um branch adicional</div></li>
-                        <li><div>Excluir todo branch <span class="branch conf"></span> (prefixo <u>"conf/"</u>) após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></div></li>
+                        <li><div>Excluir todo branch <span class="branch conf"></span> após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></div></li>
+                        <li><div>O branch de conflito pode ser criado com base no branch de destino, desde que seja mergeado nele o <b>seu branch</b> original</div></li>
                     </ul>
                 </footer>
             </section>
             <section id="tips">
-                <h2>Dicas</h2>
+                <h2><span style='font-size:1.2em;'>&#128161;</span> Dicas</h2>
                 <ul>
                     <li>
                         <div>
@@ -310,13 +334,14 @@
                             Quando houver a dependência ou a necessidade de operar em um branch já existente, que não seja de sua autoria, alinhe com o responsável e procurem a melhor forma de se manter dentro do fluxo
                         </div>
                     </li>
-                    <!-- <li>
+                    <li>
                         <div>
                             <b>Identifique corretamente seu <u>commit</u>!</b>
                             <br/>
-                            Para efeitos de histórico o relevante é o commit, portanto o descreva de forma clara e específica
+                            Para efeitos de histórico o relevante é o commit, portanto o descreva de forma clara e específica.  
+                            Eventualmente essa identificação pode salvar muito tempo
                         </div>
-                    </li> -->
+                    </li>
                 </ul>
             </section>
             <section id="download" class="no-print">
