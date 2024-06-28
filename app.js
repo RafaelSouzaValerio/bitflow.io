@@ -145,6 +145,28 @@ const branchRef = {
     }
 };
 
+const branchHotFix = {
+    name: 'hot-fix',
+    style: {
+        color: 'var(--fix)',
+        label: {
+          strokeColor: 'var(--fix)',
+          display: 'none'
+        }
+    },
+    commitDefaultOptions: {
+      style: {
+        color: 'var(--fix)',
+        message: {
+          color: 'var(--fix)'
+        },
+        dot: {
+          color: 'var(--fix)'
+        }
+      }
+    }
+};
+
 const branchRelease = {
     name: 'release',
     style: {
@@ -224,8 +246,9 @@ window.onload = function(){
   graphOptions.responsive = matchMedia.matches;
 
   drawGraphFeat();
-  drawGraphFix();
+  //drawGraphFix();
   //drawGraphRef();
+  drawGraphHotFix();
   drawGraphRelease();
   drawGraphReleaseFix();
   drawGraphConf();
@@ -368,6 +391,7 @@ async function drawGraphFeat() {
 
   let master = gitgraph.branch(branchMaster);
   master.commit();
+  let release = master.branch(branchRelease);
 
   let feat = master.branch(branchFeat);
   feat.commit();
@@ -379,7 +403,7 @@ async function drawGraphFeat() {
 
   staging.merge(feat);
 
-  let release = master.branch(branchRelease);
+  release.commit(commitWithoutDot);
   release.merge(feat);
 
   master.commit(commitWithoutDot);
@@ -436,6 +460,31 @@ async function drawGraphRef() {
   master.commit();
 }
 
+async function drawGraphHotFix() {
+
+  let graphContainer = document.getElementById('graph-hotfix');
+  let gitgraph = GitgraphJS.createGitgraph(graphContainer, graphOptions);
+
+  let master = gitgraph.branch(branchMaster);
+  master.commit();
+  let release = master.branch(branchRelease);  
+  let staging = master.branch(branchStaging);
+
+  let hotfix = master.branch(branchHotFix);
+  hotfix.commit();
+  
+  master.merge(hotfix);
+
+  staging.commit(commitWithoutDot);
+  staging.merge(hotfix);
+
+  release.commit(commitWithoutDot);
+  release.merge(hotfix);
+
+  master.commit(commitWithoutDot);
+  master.commit();
+}
+
 async function drawGraphRelease() {
 
   let graphContainer = document.getElementById('graph-release');
@@ -451,18 +500,12 @@ async function drawGraphRelease() {
   fix.commit(commitWithoutDot);
   fix.commit();
 
-  branchFeat.name = 'feat-2'
-  let feat2 = gitgraph.branch(branchFeat);
-  feat2.commit(commitWithoutDot);
-  feat2.commit();
-  branchFeat.name = 'feat'
-
   let release = master.branch(branchRelease);
   release.merge(fix);
-  release.merge(feat2);
   release.merge(feat);
 
   let staging = gitgraph.branch(branchStaging);
+  staging.commit(commitWithoutDot);
   staging.merge(release);
   master.merge(release);
 }
@@ -472,6 +515,9 @@ async function drawGraphReleaseFix() {
   let graphContainer = document.getElementById('graph-release-fix');
   let gitgraph = GitgraphJS.createGitgraph(graphContainer, graphOptions);
 
+  let staging = gitgraph.branch(branchStaging);
+  staging.commit();
+
   let release = gitgraph.branch(branchRelease);
   release.commit();
 
@@ -479,6 +525,9 @@ async function drawGraphReleaseFix() {
   releaseFix.commit();
 
   release.merge(releaseFix);
+
+  staging.commit(commitWithoutDot);
+  staging.merge(releaseFix);
 }
 
 async function drawGraphConf() {
