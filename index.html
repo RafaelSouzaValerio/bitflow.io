@@ -140,7 +140,7 @@
                         <div>Resolva os possíveis conflitos, caso ocorram</div>
                     </li>
                     <li>
-                        <div>Quando concluír a operação, crie um pull-request para o branch <span class="branch staging"></span></div>
+                        <div>Quando concluír a operação, crie um pull-request para <span class="branch staging"></span></div>
                     </li>
                     <li>
                         <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
@@ -183,17 +183,18 @@
                     </li>
                 </ul>
                 <h3>Como implementar esses branches?</h3>
+                <p>* Os branches de desenvolvimento seguem o mesmo fluxo, portanto serão represetandos aqui pelo branch <u>dev</u></p>
                 <span style="display: inline-block;">
                     <div class="col-left">
                         <ul>
                             <li><div>Crie seu branch com base no branch <span class="branch master"></span></div></li>
-                            <li><div>Ao concluir o desenvolvimento, faça um pull-request para o branch <span class="branch staging"></span>, onde os testes serão realizados</div></li>
-                            <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para o branch <span class="branch staging"></span>, para novos testes</div></li>
-                            <li><div>Quando aprovado e pronto para ser liberado em produção, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
+                            <li><div>Após o desenvolvimento, faça um pull-request para <span class="branch staging"></span>, onde os testes serão realizados</div></li>
+                            <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para <span class="branch staging"></span></div></li>
+                            <li><div>Quando aprovado, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
                         </ul>
                     </div>
                     <div class="col-right">
-                        <div id="graph-feat" class="graph"></div>
+                        <div id="graph-dev" class="graph"></div>
                     </div>
                 </span>
                 <summary>
@@ -211,9 +212,9 @@
                     <div class="col-left">
                         <ul>
                             <li><div>Crie seu branch com base no branch <span class="branch master"></span></div></li>
-                            <li><div>Quando concluído (desenvolvimento e testes), faça um pull-request para o branch <span class="branch master"></span></div></li>
-                            <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça um novo pull-request para o branch <span class="branch master"></span></div></li>
-                            <li><div>Faça um pull-request para o branch <span class="branch staging"></span> e o <span class="branch release"></span> existente</div></li>
+                            <li><div>Quando concluído (desenvolvimento e testes), faça um pull-request para <span class="branch master"></span></div></li>
+                            <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça um novo pull-request para <span class="branch master"></span></div></li>
+                            <li><div>Faça um pull-request para <span class="branch staging"></span> e o <span class="branch release"></span> existente</div></li>
                         </ul>
                     </div>
                     <div class="col-right">
@@ -283,7 +284,7 @@
                     <ul>
                         <li><div>Crie o branch com base no branch do respectivo <span class="branch release"></span></div></li>
                         <li><div>Ao concluir o desenvolvimento, faça um pull-request para branch do respectivo <span class="branch release"></span>, para novos teste no respectivo ambiente</div></li>
-                        <li><div>Faça um pull-request para o branch <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos</li>
+                        <li><div>Faça um pull-request para <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos</li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -355,7 +356,7 @@
                     </li>
                     <li>
                         <div>
-                            <b>Nunca crie um pull-request para o branch <span class="branch master"></span>!</b>
+                            <b>Nunca crie um pull-request para <span class="branch master"></span>!</b>
                             <br/>
                             Os branches a serem liberados devem compor um branch <span class="branch release"></span>, pois esse será mergeado integralmente nos branches <span class="branch staging"></span> e <span class="branch master"></span>
                         </div>

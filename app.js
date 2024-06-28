@@ -79,6 +79,28 @@ const branchStaging = {
     }
 };
 
+const branchDev = {
+    name: 'dev',
+    style: {
+        color: '#9966ff',
+        label: {
+          strokeColor: '#9966ff',
+          display: 'none'
+        }
+    },
+    commitDefaultOptions: {
+      style: {
+        color: '#9966ff',
+        message: {
+          color: '#9966ff'
+        },
+        dot: {
+          color: '#9966ff'
+        }
+      }
+    }
+};
+
 const branchFeat = {
     name: 'feat',
     style: {
@@ -245,9 +267,7 @@ window.onload = function(){
   let matchMedia = window.matchMedia('(max-width: 700px)');
   graphOptions.responsive = matchMedia.matches;
 
-  drawGraphFeat();
-  //drawGraphFix();
-  //drawGraphRef();
+  drawGraphDev();
   drawGraphHotFix();
   drawGraphRelease();
   drawGraphReleaseFix();
@@ -382,6 +402,32 @@ async function downloadHtml() {
   if (loadPdf) {
     loadPdf.classList.add('off');
   }
+}
+
+async function drawGraphDev() {
+
+  let graphContainer = document.getElementById('graph-dev');
+  let gitgraph = GitgraphJS.createGitgraph(graphContainer, graphOptions);
+
+  let master = gitgraph.branch(branchMaster);
+  master.commit();
+  let release = master.branch(branchRelease);
+
+  let dev = master.branch(branchDev);
+  dev.commit();
+
+  let staging = master.branch(branchStaging);
+  staging.merge(dev);
+
+  dev.commit();
+
+  staging.merge(dev);
+
+  release.commit(commitWithoutDot);
+  release.merge(dev);
+
+  master.commit(commitWithoutDot);
+  master.commit();
 }
 
 async function drawGraphFeat() {
