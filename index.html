@@ -128,13 +128,13 @@
                 </p>
                 <ul class="thin-arrow">
                     <li>
-                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado nomear de forma a facilitar a identificação para futura exclusão</div>
+                        <div>Crie um branch com base no branch <span class="branch staging"></span>.  É recomendado nomear de forma a facilitar a identificação para futura exclusão, aqui identificaremos como <b>sync/staging</b></div>
                     </li>
                     <li>
-                        <div>Faça checkout no <b>seu branch</b> novo</div>
+                        <div>Faça checkout no seu novo branch <b>sync/staging</b></div>
                     </li>
                     <li>
-                        <div>Execute um <u>merge</u> do branch <span class="branch master"></span> no <b>seu branch</b></div>
+                        <div>Execute um <u>merge</u> do branch <span class="branch master"></span> no branch <b>sync/staging</b></div>
                     </li>
                     <li>
                         <div>Resolva os possíveis conflitos, caso ocorram</div>
@@ -143,7 +143,7 @@
                         <div>Quando concluír a operação, crie um pull-request para <span class="branch staging"></span></div>
                     </li>
                     <li>
-                        <div>Após o review e merge, o <b>seu branch</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
+                        <div>Após o review e merge, o branch <b>sync/staging</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
                     </li>
                     <li>
                         <div>
@@ -156,7 +156,7 @@
                 <footer>
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">                        
-                        <li><div>É necessário fazer essa etapa sempre que o branch <span class="branch master"></span> estiver a frente do branch <span class="branch staging"></span></div></li>
+                        <li><div>É necessário fazer essa etapa sempre que o branch <span class="branch master"></span> estiver a frente do branch <span class="branch staging"></span>, ou seja coluna behind do branch <span class="branch staging"></span> maior que zero</div></li>
                     </ul>
                 </footer>
             </section>
@@ -187,7 +187,7 @@
                 <span style="display: inline-block;">
                     <div class="col-left">
                         <ul>
-                            <li><div>Crie seu branch com base no branch <span class="branch master"></span></div></li>
+                            <li><div>Crie <b>seu branch</b> com base no branch <span class="branch master"></span>, nomeando de acordo com o tipo de desenvolvimento</div></li>
                             <li><div>Após o desenvolvimento, faça um pull-request para <span class="branch staging"></span>, onde os testes serão realizados</div></li>
                             <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para <span class="branch staging"></span></div></li>
                             <li><div>Quando aprovado, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
@@ -211,7 +211,7 @@
                 <span style="display: inline-block;">
                     <div class="col-left">
                         <ul>
-                            <li><div>Crie seu branch com base no branch <span class="branch master"></span></div></li>
+                            <li><div>Crie <b>seu branch</b> com base no branch <span class="branch master"></span>, nomeando com o prefixo <u>"hotfix/"</u></div></li>
                             <li><div>Quando concluído (desenvolvimento e testes), faça um pull-request para <span class="branch master"></span></div></li>
                             <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça um novo pull-request para <span class="branch master"></span></div></li>
                             <li><div>Faça um pull-request para <span class="branch staging"></span> e o <span class="branch release"></span> existente</div></li>
@@ -284,7 +284,7 @@
                     <ul>
                         <li><div>Crie o branch com base no branch do respectivo <span class="branch release"></span></div></li>
                         <li><div>Ao concluir o desenvolvimento, faça um pull-request para branch do respectivo <span class="branch release"></span>, para novos teste no respectivo ambiente</div></li>
-                        <li><div>Faça um pull-request para <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos</li>
+                        <li><div>Faça um pull-request para <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos e reduzindo as chances de conflitos pós release</li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -349,7 +349,7 @@
                     </li>
                     <li>
                         <div>
-                            <b>Evite merge do branch <span class="branch staging"></span> no seu branch!</b>
+                            <b>Evite merge do branch <span class="branch staging"></span> no <b>seu branch</b>!</b>
                             <br/>
                             Nesse fluxo essa necessidade pode aparecer apenas em caso de conflito, portanto consulte a seção <a href="#conflict"><u>Como solucionar conflitos?</u></a>
                         </div>
@@ -374,6 +374,8 @@
                             <br/>
                             Para efeitos de histórico o relevante é o commit, portanto o descreva de forma clara e específica.  
                             Eventualmente essa identificação pode salvar muito tempo
+                            <br/>
+                            (Exemplo de uso com jira seria iniciar a descrição do commit com a identificação do ticket, como: "TICKET-ID: Descrição")
                         </div>
                     </li>
                 </ul>
