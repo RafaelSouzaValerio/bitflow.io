@@ -83,7 +83,7 @@
                 <p>
                     Utilizaremos prefixos tipados para nomeação dos branches, isso facilitará o uso do fluxo.
                     <br/>
-                    Confira as nomenclaturas e o que deve compor cada tipo de branch
+                    Confira as nomenclaturas e o que deve compor cada tipo do branch
                 </p>
                 <ul class="thin-arrow">
                     <li>
@@ -114,6 +114,33 @@
                         <div><span class="branch master"></span>: Versão atual em produção, branch fixo de nome <u>"master"</u></div>
                     </li>
                 </ul>
+                <summary style="padding-top: 2em">
+                    <div>Padrões de nomenclaturas</div>
+                </summary>
+                <p>
+                    Como utilizamos o JIRA, aqui definiremos alguns padrões para facilitar nosso fluxo e entregas
+                </p>
+                <ul class="thin-arrow">
+                    <li>
+                        <div>
+                            <b>branch</b>: use a regra de prefixo, seguida da identificação do ticket, como: <u>feat/APP-42</u>
+                            <p>Dessa forma reduzimos as chances de duplicação de branches para um mesmo ticket</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <b>pull-request (PR)</b>: respeite a semântica validada pelo git, seguida da identificação do ticket, como: <u>feat: APP-42</u>
+                            <p>Assim facilitando as buscas pelas PR's de um desenvolvimento</p>
+                        </div>
+                    </li>
+                </ul>
+                <footer>
+                    <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
+                    <ul class="alert">
+                        <li><div>Podem existir branches além dos descritos nessa seção</div></li>
+                        <li><div>Caso necessário desenvolvimento não atrelado a ticket, utilize o padrão de nomenclatura substituindo a identificação do ticket por uma descrição breve do desenvolvimento, como: <u>feat/SanitizacaoExcecoes</u></div></li>
+                    </ul>
+                </footer>
                 <summary>
                     <div>Prepare o ambiente</div>
                 </summary>
@@ -140,7 +167,7 @@
                         <div>Resolva os possíveis conflitos, caso ocorram</div>
                     </li>
                     <li>
-                        <div>Quando concluír a operação, crie um pull-request para <span class="branch staging"></span></div>
+                        <div>Quando concluír a operação, crie uma pull-request para <span class="branch staging"></span></div>
                     </li>
                     <li>
                         <div>Após o review e merge, o branch <b>sync/staging</b> deve ser excluído, mantendo no repositório apenas branches ativos</div>
@@ -188,9 +215,9 @@
                     <div class="col-left">
                         <ul>
                             <li><div>Crie <b>seu branch</b> com base no branch <span class="branch master"></span>, nomeando de acordo com o tipo de desenvolvimento</div></li>
-                            <li><div>Após o desenvolvimento, faça um pull-request para <span class="branch staging"></span>, onde os testes serão realizados</div></li>
-                            <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça um novo pull-request para <span class="branch staging"></span></div></li>
-                            <li><div>Quando aprovado, faça um pull-request para o respectivo <span class="branch release"></span></div></li>
+                            <li><div>Após o desenvolvimento, faça uma pull-request para <span class="branch staging"></span>, onde os testes serão realizados</div></li>
+                            <li><div>Em caso de rejeição ou ajustes realize as alterações no próprio branch e faça uma nova pull-request para <span class="branch staging"></span></div></li>
+                            <li><div>Quando aprovado, faça uma pull-request para o respectivo <span class="branch release"></span></div></li>
                         </ul>
                     </div>
                     <div class="col-right">
@@ -212,9 +239,9 @@
                     <div class="col-left">
                         <ul>
                             <li><div>Crie <b>seu branch</b> com base no branch <span class="branch master"></span>, nomeando com o prefixo <u>"hotfix/"</u></div></li>
-                            <li><div>Quando concluído (desenvolvimento e testes), faça um pull-request para <span class="branch master"></span></div></li>
-                            <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça um novo pull-request para <span class="branch master"></span></div></li>
-                            <li><div>Faça um pull-request para <span class="branch staging"></span> e o <span class="branch release"></span> existente</div></li>
+                            <li><div>Quando concluído (desenvolvimento e testes), faça uma pull-request para <span class="branch master"></span></div></li>
+                            <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça uma nova pull-request para <span class="branch master"></span></div></li>
+                            <li><div>Faça uma pull-request para <span class="branch staging"></span> e o <span class="branch release"></span> existente</div></li>
                         </ul>
                     </div>
                     <div class="col-right">
@@ -227,7 +254,7 @@
                         <li><div>Todos os branches <u>devem iniciar sempre com base no branch</u> <span class="branch master"></span></div></li>
                         <li><div>Caso o branch do respectivo <span class="branch release"></span> não exista, o crie de acordo com a versão especificada no ticket, seguindo o padrão de nomenclatura visto em <a href="#release"><u>O que é um release?</u></a></div></li>
                         <li><div>Caso o ticket ainda não possua uma versão específica, solicite ao seu líder essa informação</div></li>
-                        <li><div>Podem existir branches além dos descritos nessa seção, porém o fluxo deve ser o mesmo</div></li>
+                        <li><div>Aplique o fluxo do branch <u>dev</u> (descrito acima) sempre que necessário o desenvolvimento em um tipo de branch não descrito aqui</div></li>
                     </ul>
                 </footer>
             </section>
@@ -248,7 +275,7 @@
                         <li><div>Faça o merge de todos os braches que deseja liberar nesse <span class="branch release"></span></div></li>
                         <li><div>Exclua os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</div></li>
                         <li><div>Caso necessite ajustes consulte a seção <a href="#release-fix"><u>release/fix</u></a></div></li>
-                        <li><div>Após validar a versão, crie um pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></div></li>
+                        <li><div>Após validar a versão, crie uma pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></div></li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -283,8 +310,8 @@
                 <div class="col-left">
                     <ul>
                         <li><div>Crie o branch com base no branch do respectivo <span class="branch release"></span>, nomeando com o prefixo <u>"release/fix/VERSAO"</u></div></li>
-                        <li><div>Ao concluir o desenvolvimento, faça um pull-request para branch do respectivo <span class="branch release"></span>, para novos teste no respectivo ambiente</div></li>
-                        <li><div>Faça um pull-request para <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos e reduzindo as chances de conflitos pós release</li>
+                        <li><div>Ao concluir o desenvolvimento, faça uma pull-request para branch do respectivo <span class="branch release"></span>, para novos teste no respectivo ambiente</div></li>
+                        <li><div>Faça uma pull-request para <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos e reduzindo as chances de conflitos pós release</li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -308,11 +335,11 @@
                 <h3>Como solucionar conflitos?</h3>
                 <ul class="two-columns">
                     <li>
-                        <div>A resolução de conflitos inicia ao tentar criar o pull-request de <b>seu branch</b>, e no comparativo é exibida a mensagem que não poderá ser mergeado automaticamente</div>
+                        <div>A resolução de conflitos inicia ao tentar criar a pull-request de <b>seu branch</b>, e no comparativo é exibida a mensagem que não poderá ser mergeado automaticamente</div>
                         <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
-                        <div>Nesse momento abandone esse pull-request e crie um novo branch <u>com base no <b>seu branch</b></u>, nomeando no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
+                        <div>Nesse momento abandone essa pull-request e crie um novo branch <u>com base no <b>seu branch</b></u>, nomeando no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
                         <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
@@ -320,7 +347,7 @@
                         <img src="img/conflict-merge-thumb.webp" alt="Mege destino do pull request no novo branch" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
-                        <div>Após resolver os conflitos no novo branch, crie o pull-request do novo branch para o branch de destino, nesse momento não devem existir conflitos</div>
+                        <div>Após resolver os conflitos no novo branch, crie a pull-request do novo branch para o branch de destino, nesse momento não devem existir conflitos</div>
                         <img src="img/conflict-pr-seccond-thumb.webp" alt="Pull request sem conflito" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                 </ul>
@@ -330,8 +357,8 @@
                 <footer>
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">
-                        <li><div>Essa situação tende a surgir ao criar o pull-request para <span class="branch staging"></span>, porém <b>todo pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</div></li>
-                        <li><div>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar o pull-request para que essa resolução funcione e não interfira no fluxo</div></li>
+                        <li><div>Essa situação tende a surgir ao criar a pull-request para <span class="branch staging"></span>, porém <b>toda pull-request pode apresentar conflitos</b>, portanto tenha atenção ao realizar essa operação</div></li>
+                        <li><div>É obrigatório que o desenvolvimento de <b>seu branch</b> esteja concluído e deseje criar a pull-request para que essa resolução funcione e não interfira no fluxo</div></li>
                         <li><div>Para validar sua resolução basta comparar <b>seu branch</b> original com o branch de destino, o conflito ainda deve existir, pois toda operação (merge e pull-request) foi realizado em um branch adicional</div></li>
                         <li><div>Excluir todo branch <span class="branch conf"></span> após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></div></li>
                     </ul>
@@ -356,14 +383,14 @@
                     </li>
                     <li>
                         <div>
-                            <b>Nunca crie um pull-request para <span class="branch master"></span>!</b>
+                            <b>Nunca crie uma pull-request para <span class="branch master"></span>!</b>
                             <br/>
                             Os branches a serem liberados devem compor um branch <span class="branch release"></span>, pois esse será mergeado integralmente nos branches <span class="branch staging"></span> e <span class="branch master"></span>
                         </div>
                     </li>
                     <li>
                         <div>
-                            <b>Atenção as dependência ou compartilhamento de branch!</b>
+                            <b>Atenção as dependência ou compartilhamento do branch!</b>
                             <br/>
                             Quando houver a dependência ou a necessidade de operar em um branch já existente, que não seja de sua autoria, alinhe com o responsável e procurem a melhor forma de se manter dentro do fluxo
                         </div>
@@ -383,7 +410,7 @@
             <section id="download" class="no-print">
                 <h2>Download</h2>
                 <ul class="no-list-style">
-                    <li style="align-items: center;">
+                    <li style="align-items: center; justify-content: space-around;">
                         <div>
                             Gostou? faça o download desse fluxo e mantenha perto de você 
                             <button onclick="downloadHtml()">
