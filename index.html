@@ -244,7 +244,7 @@
                 <h3>Como lançar um release?</h3>
                 <div class="col-left">
                     <ul>
-                        <li><div>Crie o branch com base no branch <span class="branch master"></span></div></li>
+                        <li><div>Crie o branch com base no branch <span class="branch master"></span>, nomeando como <u>"release/VERSAO"</u></div></li>
                         <li><div>Faça o merge de todos os braches que deseja liberar nesse <span class="branch release"></span></div></li>
                         <li><div>Exclua os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</div></li>
                         <li><div>Caso necessite ajustes consulte a seção <a href="#release-fix"><u>release/fix</u></a></div></li>
@@ -282,7 +282,7 @@
                 </summary>                
                 <div class="col-left">
                     <ul>
-                        <li><div>Crie o branch com base no branch do respectivo <span class="branch release"></span></div></li>
+                        <li><div>Crie o branch com base no branch do respectivo <span class="branch release"></span>, nomeando com o prefixo <u>"release/fix/VERSAO"</u></div></li>
                         <li><div>Ao concluir o desenvolvimento, faça um pull-request para branch do respectivo <span class="branch release"></span>, para novos teste no respectivo ambiente</div></li>
                         <li><div>Faça um pull-request para <span class="branch staging"></span>, mantendo assim o sincronismo entre os branches fixos e reduzindo as chances de conflitos pós release</li>
                     </ul>
