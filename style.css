@@ -748,7 +748,7 @@ p.panel {
     text-shadow: .04em .05em #00040a;
     transition: 0.5s;
     position: relative;
-    display: inline-block;
+    margin-bottom: 1em;
 }
 
     p.panel:before {
@@ -778,6 +778,16 @@ p.panel {
         top: 50%;
         transform: translate(0, -50%);
     }
+
+p.panel b:first-of-type {
+    display: inline-block;
+    margin-bottom: .5em;
+}
+
+    p.panel b span:first-of-type {
+        display: inline-block;
+    }
+
 
 p.panel.warning {
     border: 1px solid rgba(241, 142, 6, 0.81);
