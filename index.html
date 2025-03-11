@@ -123,13 +123,19 @@
                 <ul class="thin-arrow">
                     <li>
                         <div>
-                            <b>branch</b>: use a regra de prefixo, seguida da identificação do ticket, como: <u>feat/APP-42</u>
-                            <p style="margin: 0">Dessa forma reduzimos as chances de duplicação de branches para um mesmo ticket</p>
+                            <b>Branch</b>: Use a regra de prefixo, seguida da identificação do card, como: <u>feat/APP-42</u>
+                            <p style="margin: 0">Dessa forma reduzimos as chances de duplicação de branches para um mesmo card</p>
                         </div>
                     </li>
                     <li>
                         <div>
-                            <b>pull-request (PR)</b>: respeite a semântica validada pelo git, seguida da identificação do ticket, como: <u>feat: APP-42</u>
+                            <b>Commit</b>: Inicie <u>sempre</u> com a identificação do card, como: <u>feat: APP-42</u>
+                            <p style="margin: 0">Isso auxilia em uma eventual necessidade de cherry-pick, além identificar o card da alteração no histórico</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <b>Pull-Request (PR)</b>: Respeite a semântica validada pelo git, seguida da identificação do card, como: <u>feat: APP-42</u>
                             <p style="margin: 0">Assim facilitando as buscas pelas PR's de um desenvolvimento</p>
                         </div>
                     </li>
@@ -138,11 +144,13 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">
                         <li><div>Podem existir branches além dos descritos nessa seção</div></li>
-                        <li><div>Caso necessário desenvolvimento não atrelado a ticket, utilize o padrão de nomenclatura substituindo a identificação do ticket por uma descrição breve do desenvolvimento, como: <u>feat/SanitizacaoExcecoes</u></div></li>
+                        <li><div>Caso necessário desenvolvimento não atrelado a card, utilize o padrão de nomenclatura substituindo a identificação do card por uma descrição breve do desenvolvimento, como: <u>feat/SanitizacaoExcecoes</u></div></li>
                     </ul>
                 </footer>
+            </section>
+            <section id="prep-env">
                 <summary>
-                    <div>Prepare o ambiente</div>
+                    <div style="font-size: 1.6em; font-weight: 600;">Preparando o ambiente</div>
                 </summary>
                 <p class="panel warning">
                     <b><span style='font-size:1.6em;' class="animate-blink">⚠️</span> Atenção!</b>
@@ -150,7 +158,7 @@
                     Esse passo é obrigatório para o correto funcionamento do fluxo
                 </p>
                 <p>
-                    Para aplicar esse fluxo é necessário que o o branch <span class="branch staging"></span> esteja em sincronia com o branch <span class="branch master"></span>
+                    Para aplicar esse fluxo é necessário que o o branch <span class="branch staging"></span> esteja em sincronia com o branch <span class="branch master"></span>, para isso siga os passos abaixo:
                     <br/>
                 </p>
                 <ul class="thin-arrow">
@@ -183,7 +191,7 @@
                 <footer>
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">                        
-                        <li><div>É necessário fazer essa etapa sempre que o branch <span class="branch master"></span> estiver a frente do branch <span class="branch staging"></span>, ou seja coluna behind do branch <span class="branch staging"></span> maior que zero</div></li>
+                        <li><div>É necessário repetir essa etapa sempre que o branch <span class="branch master"></span> estiver a frente do branch <span class="branch staging"></span>, ou seja coluna behind do branch <span class="branch staging"></span> for maior que zero</div></li>
                     </ul>
                 </footer>
             </section>
@@ -239,9 +247,9 @@
                     <div class="col-left">
                         <ul>
                             <li><div>Crie <b>seu branch</b> com base no branch <span class="branch master"></span>, nomeando com o prefixo <u>"hotfix/"</u></div></li>
-                            <li><div>Quando concluído (desenvolvimento e testes), faça uma pull-request para <span class="branch master"></span></div></li>
-                            <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça uma nova pull-request para <span class="branch master"></span></div></li>
-                            <li><div>Faça uma pull-request para <span class="branch staging"></span> e o <span class="branch release"></span> existente</div></li>
+                            <li><div>Quando concluído (desenvolvimento e testes), faça uma pull-request para <span class="branch master"></span> ou para o <span class="branch release"></span> existente</div></li>
+                            <li><div>Caso precise de novos ajustes realize as alterações no próprio branch e faça uma nova pull-request para <span class="branch master"></span> ou <span class="branch release"></span></div></li>
+                            <li><div>Para finalizar faça uma pull-request para <span class="branch staging"></span>, garantindo que não haverá conflitos para aquele ambiente</li>
                         </ul>
                     </div>
                     <div class="col-right">
@@ -252,9 +260,10 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">                        
                         <li><div>Todos os branches <u>devem iniciar sempre com base no branch</u> <span class="branch master"></span></div></li>
-                        <li><div>Caso o branch do respectivo <span class="branch release"></span> não exista, o crie de acordo com a versão especificada no ticket, seguindo o padrão de nomenclatura visto em <a href="#release"><u>O que é um release?</u></a></div></li>
-                        <li><div>Caso o ticket ainda não possua uma versão específica, solicite ao seu líder essa informação</div></li>
-                        <li><div>Aplique o fluxo do branch <u>dev</u> (descrito acima) sempre que necessário o desenvolvimento em um tipo de branch não descrito aqui</div></li>
+                        <li><div>Mantenha o <b>seu branch</b> mesmo após o merge no branch <span class="branch staging"></span>, ele deve ser deletado apenas após ser mergeado em um branch <span class="branch release"></span> ou <span class="branch master"></span></div></li>
+                        <li><div>Se o branch do respectivo <span class="branch release"></span> não existir, solicite ao seu líder a criação de acordo com a versão especificada no card, seguindo o padrão de nomenclatura visto em <a href="#release"><u>O que é um release?</u></a></div></li>
+                        <li><div>Comunique seu líder sempre que iniciar o desenvolvimento de um card que não possui uma versão específica.  Essa informação é importante para a organização de releases</div></li>
+                        <li><div>Aplique o fluxo descrito acima sempre que necessário o desenvolvimento para um tipo de branch não descrito aqui</div></li>
                     </ul>
                 </footer>
             </section>
@@ -272,10 +281,10 @@
                 <div class="col-left">
                     <ul>
                         <li><div>Crie o branch com base no branch <span class="branch master"></span>, nomeando como <u>"release/VERSAO"</u></div></li>
-                        <li><div>Faça o merge de todos os braches que deseja liberar nesse <span class="branch release"></span></div></li>
+                        <li><div>Faça o merge de todos os braches concluídos que deseja liberar nesse <span class="branch release"></span></div></li>
                         <li><div>Exclua os branches mergeados nesse <span class="branch release"></span>, assim reduzindo a quantidade de branches existentes</div></li>
                         <li><div>Caso necessite ajustes consulte a seção <a href="#release-fix"><u>release/fix</u></a></div></li>
-                        <li><div>Após validar a versão, crie uma pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span></div></li>
+                        <li><div>Após validada e liberada a versão, crie uma pull-request para os branches <span class="branch staging"></span> e <span class="branch master"></span> para a sincronização de ambos (consulta a serção <a href="#prep-env">Preparando o ambiente</a>)</div></li>
                     </ul>
                 </div>
                 <div class="col-right">
@@ -285,16 +294,10 @@
                     <h3><span style='font-size:1.2em;'>&#9997;</span> Anota aí</h3>
                     <ul class="alert">
                         <li>
-                            <div>Todo branch mergeado em <span class="branch release"></span> deve ser excluído após a operação, mantendo no repositório apenas branches ativos</div>
+                            <div>Branches mergeados em <span class="branch release"></span> devem ser excluídos após a operação, mantendo no repositório apenas branches ativos</div>
                         </li>
                         <li>
-                            <div>Para validação do <span class="branch release"></span> é necessário que exista o ambiente disponível dessa versão</div>
-                        </li>
-                        <li>
-                            <div>O branch <span class="branch release"></span> pode ser utilizado para compilação e lançamento de versão</div>
-                        </li>
-                        <li>
-                            <div>Sempre ao ser liberado, o branch <span class="branch release"></span> deve ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></span></div>
+                            <div>Todos os projetos devem apontar para o mesmo <span class="branch release"></span> ao realizar a compilação da versão.  Caso não haja <span class="branch release"></span> para um determinado projeto, deve ser utilizado o branch <span class="branch master"></span> em sua compilação</div>
                         </li>
                         <li>
                             <div>O branch <span class="branch release"></span> deve ser excluído após ser mergeado nos branches <span class="branch staging"></span> e <span class="branch master"></div>
@@ -344,7 +347,7 @@
                         <img src="img/conflict-pr-first-thumb.webp" alt="Pull request com conflito" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
-                        <div>Nesse momento abandone essa pull-request e crie um novo branch <u>com base no <b>seu branch</b></u>, nomeando no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
+                        <div>Nesse momento abandone essa pull-request e crie um novo branch <u>com base no <b>seu branch</b></u>, nomeando-o no padrão de prefixo <u>"conf/"</u>, assim o identificando como branch de conflito: <span class="branch conf"></span></div>
                         <img src="img/conflict-new-branch-thumb.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                     </li>
                     <li>
@@ -367,6 +370,12 @@
                         <li><div>Para validar sua resolução basta comparar <b>seu branch</b> original com o branch de destino, o conflito ainda deve existir, pois toda operação (merge e pull-request) foi realizado em um branch adicional</div></li>
                         <li><div>Excluir todo branch <span class="branch conf"></span> após seu review e merge, essas branches são destinas exclusivamente a resolução de conflitos, <b>devendo sempre existir o branch original</b></div></li>
                     </ul>
+                    <p class="panel warning">
+                        <b><span style='font-size:1.6em;' class="animate-blink">⚠️</span> Atenção!</b>
+                        <br/>
+                        Nunca resolva conflitos diretamente em <b>seu branch</b>! Essa ação mergea o branch destino no branch origem, ou seja irá <u>sujar</u> <b>seu branch</b> e impedir de realizar um futuro merge para <span class="branch release"></span> ou <span class="branch master"></span>
+                    </p>
+                    <img src="img/conflict-merge.webp" alt="Novo branch com base no desenvolvido" onclick="openModalImg(this)" width="100%" height="100%" loading="lazy"/>
                 </footer>
             </section>
             <section id="tips">
@@ -407,7 +416,7 @@
                             Para efeitos de histórico o relevante é o commit, portanto o descreva de forma clara e específica.  
                             Eventualmente essa identificação pode salvar muito tempo
                             <br/>
-                            (Exemplo de uso com jira seria iniciar a descrição do commit com a identificação do ticket, como: "TICKET-ID: Descrição")
+                            (Exemplo de uso com jira seria iniciar a descrição do commit com a identificação do card, como: "CARD-ID: Descrição")
                         </div>
                     </li>
                 </ul>
@@ -448,7 +457,7 @@
             </section>
         </main>
         <footer class="endpage">
-            <p>Fluxo utilizado pela equipe de desenvolvimento de Ahreas-Folha</p>
+            <p>Fluxo adaptado e utilizado pela equipe de desenvolvimento de Ahreas</p>
             <p>Envie sua sugestão para rafael.souza@superlogica.com </p>
         </footer>
         <iframe id="iframe-pdf" width="1240" height="0" scrolling="no" style="border:none;" title="Pdf iframe"></iframe>
